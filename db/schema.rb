@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_18_221148) do
+ActiveRecord::Schema.define(version: 2018_06_18_225702) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "customer_number"
@@ -53,6 +53,51 @@ ActiveRecord::Schema.define(version: 2018_06_18_221148) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "customer_number"
+    t.string "name"
+    t.string "suite"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.integer "zip_code"
+    t.string "country"
+    t.string "main_contact__first_name"
+    t.string "main_contact__last_name"
+    t.string "main_contact_phone"
+    t.string "main_contact_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_number"], name: "index_customers_on_customer_number"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "customer_number"
+    t.string "suite"
+    t.string "street"
+    t.string "city"
+    t.string "state"
+    t.integer "zip_code"
+    t.string "country"
+    t.string "contact__first_name"
+    t.string "contact__last_name"
+    t.string "contact_phone"
+    t.string "contact_email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_number"], name: "index_locations_on_customer_number"
+  end
+
+  create_table "machines", force: :cascade do |t|
+    t.string "customer_number"
+    t.string "machine_number"
+    t.string "model"
+    t.string "serial_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_number"], name: "index_machines_on_customer_number"
   end
 
 end
