@@ -1,0 +1,60 @@
+<!-- Partial rendered by layouts/application.html.erb -->
+
+<!-- Navigation bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <%= link_to "SCTR", root_path, class: "navbar-brand text-secondery" %>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <% if admin_signed_in?%>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin tools
+          </a>
+          <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
+            <%= link_to "Customer Index", customers_path, class: "ml-2 navbar-brand text-secondery navTexTsizing" %>
+            <%= link_to "Register a new customer", new_customer_path, class: "ml-2 navbar-brand text-secondery navTexTsizing" %>
+            <div class="dropdown-divider"></div>
+            <%= link_to "Register a machine", new_machine_path, class: "ml-2 navbar-brand text-secondery navTexTsizing" %>
+            <%= link_to "Create a customer log in", customers_path, class: "ml-2 navbar-brand text-secondery navTexTsizing" %>
+            <%= link_to "Add a location", customers_path, class: "ml-2 navbar-brand text-secondery navTexTsizing" %>
+          </div>
+        </li>
+      <% end %>
+      <% if account_signed_in?%>
+        <li class="nav-item textColorGray mt-2">Hello <%= current_account.first_name %></li>
+      <% elsif admin_signed_in?%>
+        <li class="nav-item textColorGray mt-2">Hello Admin <%= current_admin.first_name %></li>
+      <% end %>
+    </ul>
+
+    <form class="form-inline my-2 my-lg-0">
+
+
+      <%= link_to "Customer Index", customers_path, class: "navbar-brand text-secondery navTexTsizing" %>
+      <% if account_signed_in? or admin_signed_in?%>
+        <% if account_signed_in?%>
+          <%= link_to "Log out", destroy_account_session_path, class: 'nav-link text-dark', method: :delete%>
+        <% else %>
+          <%= link_to "Log out", destroy_admin_session_path, class: 'nav-link text-dark', method: :delete%>
+        <% end %>
+      <% else %>
+        <%= link_to "Customer Log in", new_account_session_path, class: 'nav-link text-dark'%>
+        <%= link_to "Admin Log in", new_admin_session_path, class: 'nav-link text-dark'%>
+      <% end %>
+
+
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>

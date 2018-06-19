@@ -19,4 +19,16 @@ Rails.application.routes.draw do
      registrations: "accounts/registrations",
      confirmations: "accounts/confirmations"
    }
+
+   ## Customer
+   resources :customers do
+     get 'main_contact', to: 'customers#main_contact'
+   end
+
+   ## Location
+   resources :locations do
+   end
+   ## Machine
+   resources :machines do
+   end
 end

@@ -46,6 +46,16 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # OmniAuth (Multi-Provider Authentication)
 gem 'devise'
 
+# Add bootstrap
+gem 'bootstrap', '~> 4.1.1'
+# Add jQuery3 Bootstrap javaScript depends on it
+gem 'jquery-rails'
+
+# Sophisticated paginator for Ruby webapps, sort
+gem 'kaminari'
+
+################################################################################
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

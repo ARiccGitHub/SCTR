@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_18_225702) do
+ActiveRecord::Schema.define(version: 2018_06_19_060836) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "customer_number"
@@ -70,6 +70,9 @@ ActiveRecord::Schema.define(version: 2018_06_18_225702) do
     t.string "main_contact_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone"
+    t.string "main_contact_title"
+    t.string "email"
     t.index ["customer_number"], name: "index_customers_on_customer_number"
   end
 
@@ -87,6 +90,8 @@ ActiveRecord::Schema.define(version: 2018_06_18_225702) do
     t.string "contact_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "phone"
+    t.string "contact_title"
     t.index ["customer_number"], name: "index_locations_on_customer_number"
   end
 
