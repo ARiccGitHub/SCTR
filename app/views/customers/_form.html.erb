@@ -1,4 +1,4 @@
-<!--
+ <!--
       Form partial
 -->
 
@@ -21,91 +21,95 @@
 <div class="p-3">
 <!-- Buffer Block -->
 </div>
-
 <!-- Customer's form, edit/new -->
 <%= form_for @customer do |f| %>
-  <!-- Costumer Number -->
-  <div class="card w-50">
-    <div class="card-body d-flex flex-row justify-content-between">
-      <div><h4 class="pt-3 pr-3"><%= f.label :customer_number, "Customer number" %>:</h4> <%= f.text_field :customer_number,
-          class: 'form-control-sm w-75'%>*
-      </div>
-      <!-- Delete, Admin permission lvl-0 only access-->
-      <div>
-        <% if @customer.id == nil  %>
-          <%= link_to "Delete", root_path, class: 'btn btn-danger disabled'%>
-        <% else %>
-          <%= link_to "Delete", customer_path(@customer.id), class: 'btn btn-danger', data: {confirm: "Are you sure?"}, method: :delete%>
-        <% end %>
-      </div>
+<!-- Costumer Number -->
+<div class="card w-50">
+  <div class="card-body d-flex flex-row justify-content-between">
+    <div><h4 class="pt-3 pr-3"><%= f.label :customer_number, "Customer number" %>:</h4> <%= f.text_field :customer_number,
+        class: 'form-control-sm w-75'%>*
+    </div>
+    <!-- Delete, Admin permission lvl-0 only access-->
+    <div>
+      <% if @customer.id == nil  %>
+        <%= link_to "Delete", root_path, class: 'btn btn-outline-danger disabled'%>
+      <% else %>
+        <%= link_to "Delete", customer_path(@customer.id), class: 'btn btn-outline-danger', data: {confirm: "Are you sure?"}, method: :delete%>
+      <% end %>
     </div>
   </div>
-  <!-- Costumer Info -->
-  <div class="d-flex flex-row"><!-- cards wrapper -->
-    <!-- Costumer Name -->
-    <div class="card w-50" >
-      <h5 class="card-header formHeadBlockSizing">Business name: <%= f.text_field :name, class: "form-control-sm w-50" %>*</h5>
-      <!-- Costumer Info -->
+</div>
+
+<!-- Costumer Info -->
+<div class="d-flex flex-row"><!-- cards wrapper -->
+  <!-- Costumer Name -->
+  <div class="card w-50" >
+    <h5 class="card-header formHeadBlockSizing">Business name: <%= f.text_field :name, class: "form-control-sm w-50" %>*</h5>
+    <!-- Costumer Info -->
+    <div class="card-body">
+      <div class="d-flex flex-column">
+        <!-- Phone and Email -->
+        <h4 class="card-title">Contact:</h4>
+        <p class="card-text">Tel:&#160;&#160;&#160;&#160;&#160;<%= f.phone_field :phone, class: "form-control-sm" %>*</p>
+        <p class="card-text">Email: <%= f.email_field :email, class: "form-control-sm" %></p>
+        <p></p>
+        <!-- Address -->
+        <h4 class="card-title">Address:</h4>
+        <p class="card-text "><%= f.text_field :suite, placeholder:"suite",class: "form-control-sm w-25" %></p>
+        <p class="card-text "><%= f.text_field :street, placeholder:"street", class: "form-control-sm w-100" %></p>
+        <p class="card-text "><%= f.text_field :city, placeholder:"city", class: "form-control-sm w-50" %></p>
+        <p class="card-text "><%= f.text_field :state, placeholder:"state", class: "form-control-sm w-50" %></p>
+        <p class="card-text "><%= f.text_field :zip_code, placeholder:"zip code", class: "form-control-sm w-25" %></p>
+        <p class="card-text "><%= f.text_field :country, placeholder:"country", class: "form-control-sm w-50" %></p>
+      </div>
+    </div><!-- card-body -->
+    <!-- Submit, Admin permission lvl-1 or lower, access-->
+    <!-- On Submit link to 'POST' customers#create -->
+    <%= f.submit "Submit", class: "btn btn-info" %>
+</div><!-- card -->
+<!-- Main Contact Infomation -->
+  <% if @customer.main_contact_email != nil %>
+    <!-- Main Contact does exist -->
+    <!-- Main Contact Infomation -->
+    <div class="card w-50 cardSizing">
+      <div class="card-header d-flex justify-content-between">
+        <h5>Main Contact</h5>
+      </div>
       <div class="card-body">
-        <div class="d-flex flex-column">
-          <!-- Phone and Email -->
-          <h4 class="card-title">Contact:</h4>
-          <p class="card-text">Tel:&#160;&#160;&#160;&#160;&#160;<%= f.phone_field :phone, class: "form-control-sm" %>*</p>
-          <p class="card-text">Email: <%= f.email_field :email, class: "form-control-sm" %></p>
-          <p></p>
-          <!-- Address -->
-          <h4 class="card-title">Address:</h4>
-          <p class="card-text "><%= f.text_field :suite, placeholder:"suite",class: "form-control-sm w-25" %></p>
-          <p class="card-text "><%= f.text_field :street, placeholder:"street", class: "form-control-sm w-100" %></p>
-          <p class="card-text "><%= f.text_field :city, placeholder:"city", class: "form-control-sm w-50" %></p>
-          <p class="card-text "><%= f.text_field :state, placeholder:"state", class: "form-control-sm w-50" %></p>
-          <p class="card-text "><%= f.text_field :zip_code, placeholder:"zip code", class: "form-control-sm w-25" %></p>
-          <p class="card-text "><%= f.text_field :country, placeholder:"country", class: "form-control-sm w-50" %></p>
+        <!-- Name -->
+        <div class="d-flex flex-row justify-content-between">
+          <div>
+            <p class="card-text"><strong>Title:&#160;</strong><%= @customer.main_contact_title %></p>
+            <p class="card-text"><strong>First name:&#160;</strong><%= @customer.main_contact__first_name %></p>
+            <p class="card-text"><strong>Last name:&#160;</strong><%= @customer.main_contact__last_name %></P>
+          </div>
+          <!-- Phone and email -->
+          <div class="mr-3">
+            <p class="card-text"></p>
+            <p class="card-text"><strong>Tel:&#160;</strong><%= @customer.main_contact_phone %></p>
+            <p class="card-text"><strong>Email:&#160;</strong>&#160;<%= @customer.main_contact_email %></p>
         </div>
       </div><!-- card-body -->
-      <!-- Submit, Admin permission lvl-1 or lower, access-->
-      <!-- On Submit link to 'POST' customers#create -->
-      <%= f.submit "Submit", class: "btn btn-primary" %>
-  </div><!-- card -->
-  <!-- Main Contact Infomation -->
-    <% if @customer.main_contact_email != nil %>
-      <!-- Main Contact does exist -->
-      <!-- Main Contact Infomation -->
-      <div class="card w-50">
-        <div class="card-header d-flex justify-content-between">
-          <h5>Main Contact</h5>
-        <div>
-        <div class="card-body">
-          <!-- Name -->
-          <div class="d-flex flex-row justify-content-between">
-            <div>
-              <p class="card-text"><strong>Title:</strong> <%= @customer.main_contact_title %></p>
-              <p class="card-text"><strong>First name:</strong>  <%= @customer.main_contact__first_name %></p>
-              <p class="card-text"><strong>Last name:</strong>  <%= @customer.main_contact__last_name %></P>
-            </div>
-            <!-- Phone and email -->
-            <div class="mr-3">
-              <p class="card-text"></p>
-              <p class="card-text"><strong>Tel:</strong>  <%= @customer.main_contact_phone %></p>
-              <p class="card-text"><strong>Email:</strong>  <%= @customer.main_contact_email %></p>
-          </div>
-        </div><!-- card-body -->
-        <!-- Edit, Admin permission lvl-1 or lower, access-->
-        <!-- On Edit link to 'GET' customers#edit -->
-        <%= link_to "Edit", customer_main_contact_path(@customer), class: 'btn btn-primary'%>
-      </div><!-- card -->
-    <% else %>
-      <!-- Main Contact does not exist -->
-      <div class="card w-50">
-        <!--  No main contact partial -->
-        <%= render  'noMainContact' %>
-        <!-- Add, Admin permission lvl-1 or lower, access-->
-        <% if @customer.customer_number != nil and @customer.main_contact_email == nil %><!-- checks if contact exist for edit rendering, if yes it disables add link -->
-          <%= link_to "Add", customer_main_contact_path(@customer), class: "btn btn-primary mt-0" %>
-        <% else %>
-          <%= link_to "Add", root_path, class: "btn btn-primary mt-0 disabled" %>
-        <% end %>
-      </div><!-- card -->
+    </div><!-- card -->
+    <!-- Edit, Admin permission lvl-1 or lower, access-->
+    <!-- On Edit link to 'GET' customers#edit -->
+    <%# if customer exists, link to the customer main contact partial edit %>
+    <% if @customer.customer_number != nil %>
+      <%= link_to "Edit", customer_main_contact_path(@customer), class: 'btn btn-info'%>
     <% end %>
+  <% else %>
+    <!-- Main Contact does not exist -->
+    <div class="card w-50 cardSizing">
+      <!--  No main contact partial -->
+      <%= render  'noMainContact' %>
+      <!-- Add, Admin permission lvl-1 or lower, access-->
+      <!-- checks if contact exist for edit rendering, if yes it disables add link -->
+      <% if @customer.customer_number != nil and @customer.main_contact_email == nil %>
+        <%= link_to "Add", customer_main_contact_path(@customer), class: 'btn btn-info mt-0' %>
+      <% else %>
+        <%= link_to "Add", root_path, class: "btn btn-info mt-0 disabled" %>
+      <% end %>
+    </div><!-- card -->
   <% end %>
-  </div><!-- cards wrapper -->
+<% end %>
+</div><!-- cards wrapper -->

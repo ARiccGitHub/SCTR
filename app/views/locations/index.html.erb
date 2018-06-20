@@ -1,26 +1,28 @@
-<h1>Customer Index</h1>
-<%= paginate @customers %>
+<h1>LocationIndex</h1>
+<%= paginate @locations %>
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Phone Number</th>
-      <th scope="col">Email</th>
-      <th scope="col"></th>
+      <th scope="col">Customer's number</th>
+      <th scope="col">Costomer's name</th>
+      <th scope="col">Location's name</th>
+      <th scope="col">Contact' name</th>
+      <th scope="col">Contac's phone</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-  <% @customers.each do |customer| %>
+  <% @locations.each do |location| %>
     <tr>
-      <td><%= customer.customer_number %></td>
-      <td><%= customer.name %></td>
-      <td><%= customer.phone %></td>
-      <td><%= customer.email %></td>
-      <td><%= link_to "Show", customer_path(customer),
+      <td><%= location.customer_number %></td>
+      <td><%= location.bus_name %></td>
+      <td><%= location.name %></td>
+      <td><%= location.contact__first_name %></td>  
+      <td><%= location.contact_phone%></td>
+      <td><%= link_to "Show", location_path(location),
         class: "btn-sm btn-primary  mt-2  p-1"%></td>
     </tr>
   <% end %>
   </tbody>
 </table>
-<%= paginate @customers %>
+<%= paginate @locations %>
