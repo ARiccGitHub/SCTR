@@ -23,12 +23,19 @@ Rails.application.routes.draw do
    ## Customer
    resources :customers do
      get 'main_contact', to: 'customers#main_contact'
+     ## Location
+     resources :locations do
+       get 'contact', to: 'locations#contact'
+       ## Machine
+       resources :machines do
+       end
+     end
    end
-
-   ## Location
    resources :locations do
-   end
-   ## Machine
+     get 'contact', to: 'locations#contact'
+     ## Machine
+  end
    resources :machines do
    end
+
 end

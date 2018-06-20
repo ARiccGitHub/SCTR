@@ -4,33 +4,45 @@ class LocationsController < ApplicationController
     ### condition.before_action if condition is true
     ###  set what actions can be call before using all or some CRUD functions
 
-    before_action :set_location, only: [:edit, :update, :destroy]
+    before_action :set_location, only: [:edit, :update, :destroy, :create]
     #before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy, :index]
 
+    def contact
+      @location = Location.find(params[:location_id])
+    end
+
     def index
-      @locations = location.order(:name).page params[:page]
+      @locations = Location.order(:name).page params[:page]
     end
 
-    def new
-      @location = location.new
-    end
-
-    def create
-      @location = location.new(location_params)
+    def new # post
+      # will creates a location array, pushs
+      # customer_number customer bus_name bus_phone and post array
+      # redirect to put (edit)
+      @location = Location.new
+      @customer = Customer.find(params[:customer_id])
+      @location.customer_number = @customer.customer_number
+      @location.customer = @customer
+      @location.bus_name = @customer.name
+      @location.bus_phone = @customer.phone
       if @location.save
-        redirect_to location_path(@location)
+        render 'new'
       else
         flash.now[:notice] = "error"
-        render 'new'
+        redirect_to put
       end
     end
 
+    def create
+
+    end
+
     def edit
-      @location = location.find(params[:id])
+
     end
 
     def show
-      @location = location.find(params[:id])
+      @location = Location.find(params[:id])
     end
 
     def update
@@ -50,11 +62,12 @@ class LocationsController < ApplicationController
     private
 
       def set_location
-        @location = location.find(params[:id])
+        @location = Location.find(params[:id])
       end
 
       def location_params
-        params.require(:location).permit(:cutomer_number, :name, :suite, :street, :city, :state, :zip_code, :country,
-          :contact__first_name, :contact__last_name, :contact_phone, :contact_email, :phone, :contact_title)
+        params.require(:location).permit(:customer_number, :suite, :street, :city, :state, :zip_code, :country,
+          :contact__first_name, :contact__last_name, :contact_phone, :contact_email, :phone, :contact_title, :customer_id, :name,
+          :bus_name, :bus_phone)
       end
 end

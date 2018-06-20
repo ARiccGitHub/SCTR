@@ -1,5 +1,7 @@
 class Location < ApplicationRecord
+  ## Validation
+  validates :customer_number, presence: true
+  validates :bus_name, presence: true
 
-
-  belons_to :customer
+  belongs_to :customer
 end

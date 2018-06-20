@@ -1,4 +1,4 @@
-<!--
+&#160;<!--
             Admins with permissions lvl-2 or lower are allower to access this page, customer-no
 -->
 
@@ -21,7 +21,7 @@ list all the customer information contacts, location and machines
     <h5>Customer: <%= @customer.customer_number %></h5>
     <!-- Delete, Admin permission lvl-0 only access-->
     <div>
-      <%= link_to "Delete", customer_path(@customer), class: 'btn btn-danger', data: {confirm: "Are you sure?"}, method: :delete%>
+      <%= link_to "Delete", customer_path(@customer), class: 'btn btn-outline-danger', data: {confirm: "Are you sure?"}, method: :delete%>
     </div>
   </div>
 </div>
@@ -47,47 +47,49 @@ list all the customer information contacts, location and machines
           <p class="card-text d-flex justify-content-end m-0"><%= @customer.country %></p>
         </div>
       </div>
+      <div>
+        <%= link_to "Add a location", new_customer_location_path(@customer), class: "btn btn-outline-success mt-0" %>
+      </div>
     </div><!-- card-body -->
     <!-- On Edit link to 'GET' customers#edit -->
-    <%= link_to "Edit", edit_customer_path(@customer), class: 'btn btn-primary' %>
+    <%= link_to "Edit", edit_customer_path(@customer), class: 'btn btn-info' %>
   </div><!-- card -->
   <!-- Main Contact Infomation -->
-    <% if @customer.main_contact_email != nil %>
-      <!-- Main Contact does exist -->
-      <!-- Main Contact Infomation -->
-      <div class="card w-50">
-        <div class="card-header d-flex justify-content-between">
-          <h5>Main Contact</h5>
-        </div>
+  <% if @customer.main_contact_email != nil %>
+    <!-- Main Contact does exist -->
+    <!-- Main Contact Infomation -->
+    <div class="card w-50">
+      <div class="card-header d-flex justify-content-between">
+        <h5>Main Contact</h5>
+      </div>
 
-        <div class="card-body">
-          <!-- Name -->
-            <div class="d-flex flex-row justify-content-between">
-              <div>
-                <p class="card-text"><strong>Title:</strong> <%= @customer.main_contact_title %></p>
-                <p class="card-text"><strong>First name:</strong>  <%= @customer.main_contact__first_name %></p>
-                <p class="card-text"><strong>Last name:</strong>  <%= @customer.main_contact__last_name %></P>
-              </div>
-              <!-- Phone and email -->
-              <div class="mr-3">
-                <p class="card-text"></p>
-                <p class="card-text"><strong>Tel:</strong>  <%= @customer.main_contact_phone %></p>
-                <p class="card-text"><strong>Email:</strong>  <%= @customer.main_contact_email %></p>
+      <div class="card-body">
+        <!-- Name -->
+          <div class="d-flex flex-row justify-content-between">
+            <div>
+              <p class="card-text"><strong>Title:&#160;</strong><%= @customer.main_contact_title %></p>
+              <p class="card-text"><strong>First name:&#160;</strong><%= @customer.main_contact__first_name %></p>
+              <p class="card-text"><strong>Last name:&#160;</strong><%= @customer.main_contact__last_name %></P>
             </div>
+            <!-- Phone and email -->
+            <div class="mr-3">
+              <p class="card-text"></p>
+              <p class="card-text"><strong>Tel:&#160;</strong><%= @customer.main_contact_phone %></p>
+              <p class="card-text"><strong>Email:&#160;</strong> <%= @customer.main_contact_email %></p>
           </div>
-        </div><!-- card-body -->
-        <!-- Edit, Admin permission lvl-1 or lower, access-->
-        <!-- On Edit link to 'GET' customers#edit -->
-        <%= link_to "Edit", customer_main_contact_path(@customer.id), class: 'btn btn-primary'%>
-      </div><!-- card -->
-    <% else %>
-      <!-- Main Contact does not exist -->
-      <div class="card w-50">
-        <!--  No main contact partial -->
-        <%= render  'noMainContact' %>
-        <!-- Add, Admin permission lvl-1 or lower, access-->
-        <%= link_to "Add", customer_main_contact_path(@customer.id), class: "btn btn-primary mt-0" %>
-      </div><!-- card -->
-    <% end %>
-
+        </div>
+      </div><!-- card-body -->
+      <!-- Edit, Admin permission lvl-1 or lower, access-->
+      <!-- On Edit link to 'GET' customers#edit -->
+      <%= link_to "Edit", customer_main_contact_path(@customer.id), class: 'btn btn-info'%>
+    </div><!-- card -->
+  <% else %>
+    <!-- Main Contact does not exist -->
+    <div class="card w-50">
+      <!--  No main contact partial -->
+      <%= render  'noMainContact' %>
+      <!-- Add, Admin permission lvl-1 or lower, access-->
+      <%= link_to "Add", customer_main_contact_path(@customer.id), class: "btn btn-info mt-0" %>
+    </div><!-- card -->
+  <% end %>
 </div><!-- cards wrapper -->
