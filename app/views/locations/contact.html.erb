@@ -7,7 +7,7 @@ Form location Information
 list all the customer information contacts, location and machines
  -->
 
-<h3>Add Contact</h3>
+<h3 class="card-header">Add Contact</h3>
 
 <!-- Customer form, show -->
 <%= form_for @location do |f| %>
@@ -19,8 +19,8 @@ list all the customer information contacts, location and machines
     <div class="card-body d-flex flex-row justify-content-between ">
       <div>
         <div>
-          <h6 class="pt-3 pr-3"><%= @location.bus_name %></h6>
-          <h6 class="pt-3 pr-3">Tel: <%= @location.bus_phone %></h6>
+          <h6 class="pt-3 pr-3"><%= @location.customer.name %></h6>
+          <h6 class="pt-3 pr-3">Tel: <%= @location.customer.phone %></h6>
         </div>
       </div>
       <div>
@@ -39,6 +39,7 @@ list all the customer information contacts, location and machines
           <div>
             <h5 class="card-title">Contact:</h5>
             <p class="card-text m-0">Tel: <%= @location.phone %></p>
+            <p class="card-text m-0">Tel: <%= @location.email %></p>
           </div>
           <!-- Address -->
           <div class="mr-3">
@@ -49,9 +50,12 @@ list all the customer information contacts, location and machines
             <p class="card-text d-flex justify-content-end m-0"><%= @location.country %></p>
           </div>
         </div>
+        <div>
+          <%= link_to "Add machine", new_customer_location_machine_path(@location), class: "btn btn-outline-success mt-5" %>
+        </div>
       </div><!-- card-body -->
       <!-- On Edit link to 'GET' customers#edit -->
-      <%= link_to "Edit", edit_location_path(@location), class: 'btn btn-primary' %>
+      <%= link_to "Edit", edit_location_path(@location), class: 'btn btn-info' %>
     </div><!-- card -->
     <!-- Main Contact -->
     <div class="card w-50">
@@ -78,7 +82,7 @@ list all the customer information contacts, location and machines
         </div>
       </div><!-- card-body -->
       <!-- On Edit link to 'PUT' locations#update -->
-      <%= f.submit "Submit", class: "btn btn-primary" %>
+      <%= f.submit "Submit", class: "btn btn-info" %>
     </div><!-- card -->
   </div><!-- cards wrapper -->
 <% end %>

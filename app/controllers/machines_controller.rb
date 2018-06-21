@@ -5,37 +5,47 @@ class MachinesController < ApplicationController
     ###  set what actions can be call before using all or some CRUD functions
 
     before_action :set_machine, only: [:edit, :update, :destroy]
-    #before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy, :index]
+    before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy, :index]
 
     def index
-      @machines = machine.order(:machine_number).page params[:page]
+      @machines = Machine.order(:machine_number).page params[:page]
     end
 
     def new
+      # will creates a machine array, pushs
+      # customer_number customer bus_name bus_phone and post array
+      # redirect to put (edit)
       @machine = Machine.new
-    end
-
-    def create
-      @machine = machine.new(machine_params)
+      @location = Location.find(params[:location_id])
+      # Costumer info added
+      @machine.customer_number = @location.customer_number
+      @machine.customer_id = @location.customer
+      # Location added
+      @machine.location = @location
+      # Save
       if @machine.save
-        redirect_to customer_path(@machine)
+        render 'new'
       else
         flash.now[:notice] = "error"
         render 'new'
       end
     end
 
+    def create
+
+    end
+
     def edit
-      @machine = machine.find(params[:id])
+
     end
 
     def show
-      @location = machine.find(params[:id])
+      @machine = Machine.find(params[:id])
     end
 
     def update
       if @machine.update(machine_params)
-        redirect_to customer_path(@machine)
+        redirect_to machine_path(@machine)
       else
         flash.now[:notice] = "error"
         render 'edit'
@@ -50,10 +60,10 @@ class MachinesController < ApplicationController
     private
 
       def set_machine
-        @location = machine.find(params[:id])
+        @machine = Machine.find(params[:id])
       end
 
       def machine_params
-        params.require(:machine).permit(:customer_number, :machine_number, :model, :serial_number)
+        params.require(:machine).permit(:customer_number, :machine_number, :model, :serial_number, :on_location)
       end
 end

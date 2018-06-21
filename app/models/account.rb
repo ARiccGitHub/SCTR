@@ -5,11 +5,11 @@ class Account < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  ## Validation
-  validates :customer_number, presence: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+ # kaminari gem
+ paginates_per 10
 
-  
+
+
+
 
 end

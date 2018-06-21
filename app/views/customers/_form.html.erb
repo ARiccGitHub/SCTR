@@ -92,7 +92,6 @@
       </div><!-- card-body -->
     </div><!-- card -->
     <!-- Edit, Admin permission lvl-1 or lower, access-->
-    <!-- On Edit link to 'GET' customers#edit -->
     <%# if customer exists, link to the customer main contact partial edit %>
     <% if @customer.customer_number != nil %>
       <%= link_to "Edit", customer_main_contact_path(@customer), class: 'btn btn-info'%>

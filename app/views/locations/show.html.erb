@@ -7,7 +7,7 @@ Location Information
 list all the customer information contacts, location and machines
 -->
 
-<h3>Location information</h3>
+<h3 class="card-header">Location information</h3>
 
 <div class="p-3">
 <!-- Buffer Block -->
@@ -17,8 +17,8 @@ list all the customer information contacts, location and machines
   <div class="card-body d-flex flex-row justify-content-between ">
     <div>
       <div>
-        <h6 class="pt-3 pr-3"><%= @location.bus_name %></h6>
-        <h6 class="pt-3 pr-3">Tel: <%= @location.bus_phone %></h6>
+        <h6 class="pt-3 pr-3"><%= @location.customer.name %></h6>
+        <h6 class="pt-3 pr-3">Tel:&#160;<%= @location.customer.phone %></h6>
       </div>
     </div>
     <div>
@@ -41,7 +41,8 @@ list all the customer information contacts, location and machines
         <!-- Phone and Email -->
         <div>
           <h5 class="card-title">Contact:</h5>
-          <p class="card-text m-0">Tel: <%= @location.phone %></p>
+          <p class="card-text m-0">Tel:&#160;&#160;&#160;&#160;&#160;<%= @location.phone %></p>
+          <p class="card-text m-0">Email:&#160;<%= @location.email %></p>
         </div>
         <!-- Address -->
         <div class="mr-3">
@@ -52,9 +53,8 @@ list all the customer information contacts, location and machines
           <p class="card-text d-flex justify-content-end m-0"><%= @location.country %></p>
         </div>
       </div>
-        <%= link_to "Add machine", location_path, class: "btn btn-outline-success mt-5" %>
+        <%= link_to "Add machine", new_customer_location_machine_path(@location.customer, @location), class: "btn btn-outline-success mt-5" %>
     </div><!-- card-body -->
-    <!-- On Edit link to 'GET' customers#edit -->
     <%= link_to "Edit", edit_location_path(@location), class: 'btn btn-info' %>
   </div><!-- card -->
   <!-- Main Contact Infomation -->

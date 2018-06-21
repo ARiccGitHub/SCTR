@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_20_170142) do
+ActiveRecord::Schema.define(version: 2018_06_21_034528) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "customer_number"
@@ -94,8 +94,7 @@ ActiveRecord::Schema.define(version: 2018_06_20_170142) do
     t.string "contact_title"
     t.integer "customer_id"
     t.string "name"
-    t.string "bus_name"
-    t.string "bus_phone"
+    t.string "email"
     t.index ["customer_id"], name: "index_locations_on_customer_id"
     t.index ["customer_number"], name: "index_locations_on_customer_number"
   end
@@ -107,7 +106,15 @@ ActiveRecord::Schema.define(version: 2018_06_20_170142) do
     t.string "serial_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "location_contact_phone"
+    t.string "location_contact_name"
+    t.string "on_location"
+    t.integer "customer_id"
+    t.integer "location_id"
+    t.string "location_phone"
+    t.index ["customer_id"], name: "index_machines_on_customer_id"
     t.index ["customer_number"], name: "index_machines_on_customer_number"
+    t.index ["location_id"], name: "index_machines_on_location_id"
   end
 
 end

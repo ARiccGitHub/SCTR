@@ -23,6 +23,7 @@ Rails.application.routes.draw do
    ## Customer
    resources :customers do
      get 'main_contact', to: 'customers#main_contact'
+     get 'select', to: 'customers#select'
      ## Location
      resources :locations do
        get 'contact', to: 'locations#contact'
@@ -37,5 +38,12 @@ Rails.application.routes.draw do
   end
    resources :machines do
    end
+   authenticated :admin do
+    root 'customers#index', as: :authenticated_root
+  end
+
+  unauthenticated :admin do
+    root "webpages#index", as: :unauthenticated_root
+  end
 
 end

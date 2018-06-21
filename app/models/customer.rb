@@ -5,6 +5,9 @@ class Customer < ApplicationRecord
   validates :name, presence: true
   validates :phone, presence: true
 
-  has_many :locations
+  # kaminari gem
+  paginates_per 10
 
+  has_many :locations
+  has_many :machines, through: :locations
 end

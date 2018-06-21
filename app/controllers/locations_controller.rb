@@ -5,8 +5,9 @@ class LocationsController < ApplicationController
     ###  set what actions can be call before using all or some CRUD functions
 
     before_action :set_location, only: [:edit, :update, :destroy, :create]
-    #before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy, :index]
+    before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy, :index]
 
+    # link to the location contact
     def contact
       @location = Location.find(params[:location_id])
     end
@@ -23,13 +24,12 @@ class LocationsController < ApplicationController
       @customer = Customer.find(params[:customer_id])
       @location.customer_number = @customer.customer_number
       @location.customer = @customer
-      @location.bus_name = @customer.name
-      @location.bus_phone = @customer.phone
+
       if @location.save
         render 'new'
       else
         flash.now[:notice] = "error"
-        redirect_to put
+        render 'new'
       end
     end
 
@@ -67,7 +67,6 @@ class LocationsController < ApplicationController
 
       def location_params
         params.require(:location).permit(:customer_number, :suite, :street, :city, :state, :zip_code, :country,
-          :contact__first_name, :contact__last_name, :contact_phone, :contact_email, :phone, :contact_title, :customer_id, :name,
-          :bus_name, :bus_phone)
+          :contact__first_name, :contact__last_name, :contact_phone, :contact_email, :phone, :contact_title, :customer_id, :name, :email)
       end
 end

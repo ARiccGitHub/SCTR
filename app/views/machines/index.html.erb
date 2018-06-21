@@ -1,28 +1,32 @@
   <h1 class="card-header">Location Index</h1>
-  <%= paginate @locations %>
+  <%= paginate @machines %>
   <table class="table">
     <thead class="thead-light">
       <tr>
         <th scope="col">Customer's number</th>
         <th scope="col">Costomer's name</th>
         <th scope="col">Location's name</th>
+        <th scope="col">Machine's number</th>
+        <th scope="col">Model</th>
         <th scope="col">Contact' name</th>
         <th scope="col">Contact's phone</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-    <% @locations.each do |location| %>
+    <% @machines.each do |machine| %>
       <tr>
-        <td><%= location.customer_number %></td>
+        <td><%= machine.customer_number %></td>
         <td><%= location.customer.name %></td>
-        <td><%= location.name %></td>
-        <td><%= location.contact__first_name %></td>
-        <td><%= location.contact_phone%></td>
-        <td><%= link_to "Show", location_path(location),
+        <td><%= machine.location.name %></td>
+        <td><%= machine.machine_number %></td>
+        <td><%= machine.model %></td>
+        <td><%= machine.location.contact__first_name %></td>
+        <td><%= machine.location.contact_phone%></td>
+        <td><%= machine.link_to "Show", machine_path(machine),
           class: "btn-sm btn-primary  mt-2  p-1"%></td>
       </tr>
     <% end %>
     </tbody>
   </table>
-  <%= paginate @locations %>
+  <%= paginate @machines %>
