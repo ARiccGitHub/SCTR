@@ -51,6 +51,9 @@ gem 'jquery-rails'
 # Sophisticated paginator for Ruby webapps, sort
 gem 'kaminari'
 
+#data faker
+gem 'faker'
+
 ################################################################################
 
 group :development, :test do

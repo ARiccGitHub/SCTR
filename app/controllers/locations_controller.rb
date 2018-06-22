@@ -5,8 +5,6 @@ class LocationsController < ApplicationController
     ###  set what actions can be call before using all or some CRUD functions
 
     before_action :set_location, only: [:edit, :update, :destroy, :create]
-    before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy, :index]
-
     # link to the location contact
     def contact
       @location = Location.find(params[:location_id])

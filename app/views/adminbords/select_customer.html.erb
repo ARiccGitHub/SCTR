@@ -1,0 +1,26 @@
+<h1 class="card-header">Customer select</h1>
+<%= paginate @customers %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Email</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.customer_number %></td>
+      <td><%= customer.name %></td>
+      <td><%= customer.phone %></td>
+      <td><%= customer.email %></td>
+      <td><%= link_to "Select", new_customer_location_path(customer),
+        class: "btn-sm btn-primary  mt-2  p-1"%></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= paginate @customers %>

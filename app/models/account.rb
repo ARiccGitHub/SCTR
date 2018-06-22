@@ -8,8 +8,6 @@ class Account < ApplicationRecord
  # kaminari gem
  paginates_per 10
 
-
-
-
-
+ belongs_to :customer
+ has_many :service_calls
 end

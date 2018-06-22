@@ -10,4 +10,7 @@ class Customer < ApplicationRecord
 
   has_many :locations
   has_many :machines, through: :locations
+
+  has_many :accounts
+  has_many :service_calls, through: :accounts
 end

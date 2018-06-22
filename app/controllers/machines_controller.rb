@@ -5,8 +5,7 @@ class MachinesController < ApplicationController
     ###  set what actions can be call before using all or some CRUD functions
 
     before_action :set_machine, only: [:edit, :update, :destroy]
-    before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy, :index]
-
+    
     def index
       @machines = Machine.order(:machine_number).page params[:page]
     end

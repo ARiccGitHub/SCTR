@@ -1,4 +1,4 @@
-class Machine < ApplicationRecord
+class ServiceCall < ApplicationRecord
   ## Validation
   validates :customer_number, presence: true
 
@@ -6,6 +6,7 @@ class Machine < ApplicationRecord
   # kaminari gem
   paginates_per 10
 
-  belongs_to :location
-  has_many :service_calls
+
+  belongs_to :machine
+  belongs_to :account
 end

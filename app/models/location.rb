@@ -8,5 +8,5 @@ class Location < ApplicationRecord
 
   belongs_to :customer
   has_many :machines
-
+  has_many :service_calls, through: :machines
 end

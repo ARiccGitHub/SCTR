@@ -46,7 +46,7 @@ list all the customer information contacts, location and machines
       </div>
       <div>
         <%= link_to "Add a location", new_customer_location_path(@customer), class: "btn btn-outline-primary" %>
-        <%= link_to "Add a machine", customer_select_path(@customer), class: "btn btn-outline-success ml-5" %>
+        <%= link_to "Add a machine", customer_select_location_path(@customer), class: "btn btn-outline-success ml-5" %>
       </div>
     </div><!-- card-body -->
     <!-- On Edit link to 'GET' customers#edit -->
