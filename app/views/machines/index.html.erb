@@ -17,7 +17,7 @@
     <% @machines.each do |machine| %>
       <tr>
         <td><%= machine.customer_number %></td>
-        <td><%= machine.location.customer.name %></td>
+        <td><%= machine.location.customer.bus_name %></td>
         <td><%= machine.location.name %></td>
         <td><%= machine.machine_number %></td>
         <td><%= machine.model %></td>

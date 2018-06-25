@@ -2,7 +2,7 @@ class Customer < ApplicationRecord
 
   ## Validation
   validates :customer_number, presence: true
-  validates :name, presence: true
+  #validates :bus_name, presence: true
   validates :phone, presence: true
 
   # kaminari gem
@@ -12,5 +12,5 @@ class Customer < ApplicationRecord
   has_many :machines, through: :locations
 
   has_many :accounts
-  has_many :service_calls, through: :accounts
+  has_many :service_calls, through: :accouts
 end

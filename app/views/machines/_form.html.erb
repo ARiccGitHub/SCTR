@@ -5,11 +5,11 @@
 <!--Partial rendered by locations/edit.html.erb and costumers/new.html.erb-->
 
 <!-- errors management -->
-<%  if @location.errors.any? %>
+<%  if @machine.errors.any? %>
  <div class="alert alert-danger" role="alert">
-   <p><%= pluralize( @location.errors.count, "error") %> Prevented the location's from being submited</p>
+   <p><%= pluralize( @location.errors.count, "error") %> Prevented the machine's from being submited</p>
    <ul>
-     <% @location.errors.messages.each do |field,errors|  %>
+     <% @machine.errors.messages.each do |field,errors|  %>
        <% errors.each do |error| %>
          <li> Problems with <%= field %>: <%= error %></li>
        <% end %>
@@ -29,13 +29,13 @@
   <div class="card-body d-flex flex-row justify-content-between ">
     <div>
       <div>
-        <h6 class="pt-3 pr-3"><%= @machine.location.customer.name %></h6>
+        <h6 class="pt-3 pr-3"><%= @machine.location.customer.bus_name %></h6>
         <h6 class="pt-3 pr-3">Location:&#160;<%= @machine.location.name%></h6>
         <h6 class="pt-3 pr-3">Tel:&#160;<%= @machine.location.phone%></h6>
       </div>
     </div>
     <div>
-      <h6 class="pt-3 pr-3"><%= @machine.customer_number %></h6>
+      <h6 class="pt-3 pr-3">Number: <%= @machine.customer_number %></h6>
     </div>
   </div>
 </div>
@@ -94,7 +94,7 @@
       </div><!-- card -->
       <!-- Edit, Admin permission lvl-1 or lower, access-->
       <%# if location exists, link to the location contact partial edit %>
-      <% if @machine.location.customer.name != nil %>
+      <% if @machine.location.customer.bus_name != nil %>
         <%= link_to "Edit", location_contact_path(@machine.location), class: 'btn btn-info'%>
       <% end %>
     <% else %>
@@ -104,7 +104,7 @@
           <%= render  'noContact' %>
           <!-- Add, Admin permission lvl-1 or lower, access-->
           <!-- checks if contact exist for edit rendering, if yes it disables add link -->
-          <% if @machine.location.customer.name != nil and @machine.location.contact_email == nil %>
+          <% if @machine.location.customer.bus_name != nil and @machine.location.contact_email == nil %>
               <%= link_to "Add", location_contact_path(@machine.location), class: 'btn btn-info mt-0' %>
           <% else %>
             <%= link_to "Add", root_path, class: "btn btn-info mt-0 disabled" %>

@@ -6,7 +6,9 @@
 Form Customer Information
 list all the customer information contacts, location and machines
  -->
-
+ <div class="p-3">
+ <!-- Buffer Block -->
+ </div>
 <h3 class="card-header">Customer Information</h3>
 <div class="p-3">
 <!-- Buffer Block -->
@@ -25,7 +27,7 @@ list all the customer information contacts, location and machines
 <!-- Costumer Name -->
 <div class="d-flex flex-row"> <!-- cards wrapper -->
   <div class="card w-50">
-    <h5 class="card-header"><%= @customer.name %></h5>
+    <h5 class="card-header"><%= @customer.bus_name %></h5>
     <!-- Costumer Info -->
     <div class="card-body">
       <div class="d-flex flex-row justify-content-between">
@@ -95,7 +97,7 @@ list all the customer information contacts, location and machines
 <div class="p-3">
 <!-- Buffer Block -->
 </div>
-
+<!-- locations -->
 <h3 class="card-header">Locations</h3>
 <div class="p-3">
 <!-- Buffer Block -->
@@ -105,7 +107,7 @@ list all the customer information contacts, location and machines
   <thead class="thead-light">
     <tr>
       <th scope="col">Customer's number</th>
-      <th scope="col">Costomer's name</th>
+      <th scope="col">Customer's name</th>
       <th scope="col">Location's name</th>
       <th scope="col">Contact' name</th>
       <th scope="col">Contac's phone</th>
@@ -116,13 +118,47 @@ list all the customer information contacts, location and machines
   <% @locations.each do |location| %>
     <tr>
       <td><%= location.customer_number %></td>
-      <td><%= location.customer.name %></td>
+      <td><%= location.customer.bus_name %></td>
       <td><%= location.name %></td>
       <td><%= location.contact__first_name %></td>
       <td><%= location.contact_phone%></td>
       <td><%= link_to "Show", location_path(location),
         class: "btn-sm btn-info  mt-2  p-1"%></td>
     </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= paginate @locations %>
+<!-- Machines -->
+<h3 class="card-header">Machines</h3>
+<div class="p-3">
+<!-- Buffer Block -->
+</div>
+<%= paginate @locations %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Customer's number</th>
+      <th scope="col">Customer's name</th>
+      <th scope="col">Location's name</th>
+      <th scope="col">Machine number</th>
+      <th scope="col">Model</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @locations.each do |location| %>
+    <% location.machines.each do |machine| %>
+      <tr>
+        <td><%= location.customer_number %></td>
+        <td><%= location.customer.bus_name %></td>
+        <td><%= location.name %></td>
+        <td><%= machine.machine_number%></td>
+        <td><%= machine.model%></td>
+        <td><%= link_to "Show", machine_path(machine),
+          class: "btn-sm btn-info  mt-2  p-1"%></td>
+      </tr>
+    <% end %>
   <% end %>
   </tbody>
 </table>

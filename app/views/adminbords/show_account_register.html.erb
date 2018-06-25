@@ -1,0 +1,48 @@
+<!--
+Admins with permissions lvl-2 or lower are allower to access this page, customer-no
+-->
+
+<!--
+Customer account registration
+list all the machine information contacts and location
+-->
+<div class="p-2">
+<!-- Buffer Block -->
+</div>
+<h2 class="card-header shadow-sm">Customer's account</h2>
+<div class="p-3">
+<!-- Buffer Block -->
+</div>
+<div class="card w-50 shadow">
+  <div class="card-body d-flex flex-row justify-content-between ">
+    <div>
+      <div>
+        <h6 class="pt-3 pr-3"><%= @account.customer.bus_name %></h6>
+        <h6 class="pt-3 pr-3">Tel:&#160;<%= @account.customer.phone %></h6>
+      </div>
+    </div>
+    <div>
+      <h6 class="pt-3 pr-3"><%= @account.customer_number %></h6>
+    </div>
+  </div>
+</div>
+<!--Account Info -->
+<div class="card w-50">
+  <h5 class="card-header"><%= @account.first_name %></h5>
+  <div class="card-body">
+    <!-- Name -->
+      <div class="d-flex flex-row justify-content-between">
+        <div>
+          <p class="card-text"><strong>Title:&#160;</strong><%= @account.title %></p>
+          <p class="card-text"><strong>First name:&#160;</strong><%= @account.first_name %></p>
+          <p class="card-text"><strong>Last name:&#160;</strong><%= @account.last_name %></P>
+        </div>
+        <!-- Phone and email -->
+        <div class="mr-3">
+          <p class="card-text"></p>
+          <p class="card-text"><strong>Email:&#160;</strong> <%= @account.email %></p>
+      </div>
+    </div>
+  </div><!-- card-body -->
+  <%# <%= link_to "Add Location", location_path(@location), class: 'btn btn-info' %>
+</div><!-- card -->

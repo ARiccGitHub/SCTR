@@ -5,20 +5,20 @@ class MachinesController < ApplicationController
     ###  set what actions can be call before using all or some CRUD functions
 
     before_action :set_machine, only: [:edit, :update, :destroy]
-    
+
     def index
       @machines = Machine.order(:machine_number).page params[:page]
     end
 
     def new
-      # will creates a machine array, pushs
-      # customer_number customer bus_name bus_phone and post array
-      # redirect to put (edit)
+      # will creates a machine array,
+      # pushs customer_number, location.id and customer_id,  posts array
       @machine = Machine.new
       @location = Location.find(params[:location_id])
       # Costumer info added
       @machine.customer_number = @location.customer_number
       @machine.customer_id = @location.customer
+      @machine.location_id = @location
       # Location added
       @machine.location = @location
       # Save

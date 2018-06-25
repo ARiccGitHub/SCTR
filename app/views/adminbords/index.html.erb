@@ -29,7 +29,7 @@ Form Admin Dashbord
     </div>
     <ul class="list-unstyled">
       <li><%= link_to "Index", locations_path, class: 'btn btn-info w-100' %></li>
-      <li><%= link_to "New", select_customer_path, class: 'btn btn-secondary w-100' %></li>
+      <li><%= link_to "New", select_customer_new_location_path, class: 'btn btn-secondary w-100' %></li>
     </ul>
   </div>
   <!-- Machines -->
@@ -39,7 +39,7 @@ Form Admin Dashbord
     </div>
     <ul class="list-unstyled">
       <li><%= link_to "Index", machines_path, class: 'btn btn-info w-100' %></li>
-      <li><%= link_to "New", select_customer_path, class: 'btn btn-secondary w-100' %></li>
+      <li><%= link_to "New", select_customer_new_machine_path, class: 'btn btn-secondary w-100' %></li>
     </ul>
   </div>
   <!-- Customer's accounts -->
@@ -49,7 +49,7 @@ Form Admin Dashbord
     </div>
     <ul class="list-unstyled">
       <li><%# link_to "Index", locations_path, class: 'btn btn-info w-100' %></li>
-      <li><%# link_to "New", select_customer_path, class: 'btn btn-secondary w-100' %></li>
+      <li><%= link_to "New",select_customer_new_account_path, class: 'btn btn-secondary w-100' %></li>
     </ul>
   </div>
   <!-- Services call -->
