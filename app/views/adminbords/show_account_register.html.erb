@@ -44,5 +44,35 @@ list all the machine information contacts and location
       </div>
     </div>
   </div><!-- card-body -->
-  <%# <%= link_to "Add Location", location_path(@location), class: 'btn btn-info' %>
+  <%= link_to "Add Location", select_account_locations_adminbords_path(@account), class: 'btn btn-info' %>
 </div><!-- card -->
+<div class="p-2">
+<!-- Buffer Block -->
+</div>
+<h2 class="card-header shadow-sm">Account's locations</h2>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Customer's number</th>
+      <th scope="col">Costomer's name</th>
+      <th scope="col">Location's name</th>
+      <th scope="col">Contact' name</th>
+      <th scope="col">Contact's phone</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @account.locations.each do |location| %>
+      <tr>
+        <td><%= location.customer_number %></td>
+        <td><%= location.customer.bus_name %></td>
+        <td><%= location.name %></td>
+        <td><%= location.contact__first_name %></td>
+        <td><%= location.contact_phone%></td>
+        <td><%= link_to "Show", location_path(location),
+          class: "btn-sm btn-primary  mt-2  p-1"%></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Back', :back, class: "btn btn-info  mt-2  p-1"%>

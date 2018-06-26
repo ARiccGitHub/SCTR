@@ -18,10 +18,10 @@ class LocationsController < ApplicationController
       # will creates a machine array,
       # pushs customer_number and customer_id,  posts array
       @location = Location.new
-      @customer = Customer.find(params[:customer_id])
+      customer = Customer.find(params[:customer_id])
       # info add.
-      @location.customer_number = @customer.customer_number
-      @location.customer = @customer
+      @location.customer_number = customer.customer_number
+      @location.customer = customer
       if @location.save
         render 'new'
       else

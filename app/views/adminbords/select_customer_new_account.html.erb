@@ -29,8 +29,8 @@ list all the customer information contacts, location and machines
       <td><%= customer.bus_name %></td>
       <td><%= customer.phone %></td>
       <td><%= customer.email %></td>
-
-      <td><%= link_to "Select", new_account_registration_path(customer),
+      <% @customer = customer %>
+      <td><%= link_to "Select", new_account_registration_path,
         class: "btn-sm btn-info  mt-2  p-1"%></td>
     </tr>
   <% end %>

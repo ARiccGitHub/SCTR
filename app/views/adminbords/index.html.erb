@@ -48,7 +48,7 @@ Form Admin Dashbord
       <h5>Accounts</h5>
     </div>
     <ul class="list-unstyled">
-      <li><%# link_to "Index", locations_path, class: 'btn btn-info w-100' %></li>
+      <li><%= link_to "Index", adminbord_accounts_path(1), class: 'btn btn-info w-100' %></li>
       <li><%= link_to "New",select_customer_new_account_path, class: 'btn btn-secondary w-100' %></li>
     </ul>
   </div>

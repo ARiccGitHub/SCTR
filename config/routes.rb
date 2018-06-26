@@ -17,7 +17,6 @@ Rails.application.routes.draw do
      confirmations: "accounts/confirmations"
    }
 
-
   ## Home page
   root "webpages#index"
 
@@ -27,7 +26,6 @@ Rails.application.routes.draw do
      get 'main_contact', to: 'customers#main_contact'
      # Route to select a location before creating a machine
      get 'select_location', to: 'customers#select_location'
-     ## Location
      resources :locations do
        get 'contact', to: 'locations#contact'
        ## Machine
@@ -37,6 +35,13 @@ Rails.application.routes.draw do
    end
    # Admind dashbord
    resources :adminbords do
+     # Route to show account
+     collection do
+       # collect selected accout locations
+       get 'select_account_locations/:account_id', to: 'adminbords#select_account_locations', as: 'select_account_locations'
+     end
+     # Route to Account Index
+     get 'accounts', to: 'adminbords#accounts'
    end
    # Locations
    resources :locations do
@@ -57,7 +62,9 @@ Rails.application.routes.draw do
    get 'select_customer_new_location', to: 'adminbords#select_customer_new_location'
    # Route to select a customer to add a new account
    get 'select_customer_new_account', to: 'adminbords#select_customer_new_account'
-   # Rout to showaccount
-   get 'adminbords/show_account_register/:id', to: 'adminbords#show_account_register', as: 'show_account_register'
+   # Route to show account
+   get 'adminbords/show_account_register/:account_id', to: 'adminbords#show_account_register', as: 'show_account_register'
+   # Post accounts locations
+   post 'adminbords/save_account/:account_id/locations/:selected_locations_ids', to: 'adminbords#save_account_locations', as: 'save_account_locations'
 
 end

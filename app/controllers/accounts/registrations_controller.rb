@@ -8,9 +8,7 @@ class Accounts::RegistrationsController < DeviseController
   # GET /resource/sign_up
   def new
     build_resource
-    resourse.customer_id = params[:customer_id]
     yield resource if block_given?
-
     respond_with resource
   end
   # POST /resource

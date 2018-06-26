@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_124615) do
+ActiveRecord::Schema.define(version: 2018_06_25_192758) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "customer_number"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 2018_06_25_124615) do
     t.index ["customer_number"], name: "index_accounts_on_customer_number"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
+  end
+
+  create_table "accounts_locations", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_accounts_locations_on_account_id"
+    t.index ["location_id"], name: "index_accounts_locations_on_location_id"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -116,6 +125,14 @@ ActiveRecord::Schema.define(version: 2018_06_25_124615) do
     t.index ["customer_id"], name: "index_machines_on_customer_id"
     t.index ["customer_number"], name: "index_machines_on_customer_number"
     t.index ["location_id"], name: "index_machines_on_location_id"
+  end
+
+  create_table "permit_accounts", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_permit_accounts_on_account_id"
   end
 
 end
