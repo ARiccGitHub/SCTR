@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SCTR</title>
+    <title>SCTRApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!-- header render from app/views/application/_header.html.erb -->
+    <%= render 'header' %>
+
+    <main role="main">
+      <div class="container">
+        <!-- Alerts use by Devise -->
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+
+        <%= yield %>
+
+      </div>
+    </main>
+
+    <!-- footer render from app/views/application/_footer.html.erb -->
+    <%= render 'footer' %>
   </body>
 </html>

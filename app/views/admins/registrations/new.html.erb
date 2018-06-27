@@ -1,0 +1,39 @@
+
+<h2 class="card-header">Admin sign in</h2>
+<div class="p-3">
+<!-- Buffer Block -->
+</div>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="card w-50" >
+    <h5 class="card-header"></h5>
+
+    <div class="card-body">
+      <div class="d-flex flex-column">
+        <!-- Name and Email -->
+        <h4 class="card-title">Name:</h4>
+        <p class="card-text">Title:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<%= f.text_field :title, class: "form-control-sm w-25" %>*</p>
+        <p class="card-text">First name:&#160;<%= f.text_field :first_name, class: "form-control-sm" %>*</p>
+        <p class="card-text">Last name:&#160;<%= f.text_field :last_name, class: "form-control-sm" %>*</p>
+        <p class="card-title">Email:</p>
+        <p><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control-sm" %>*</p>
+        <p></p>
+        <!-- Address -->
+        <h4 class="card-title">Passwords</h4>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <p class="card-text "><%= f.password_field :password, autocomplete: "off", class: "form-control-sm w-50" %></p>
+        <p class="card-text "><%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control-sm w-50" %></p>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      </div>
+    </div><!-- card-body -->
+    <%= f.submit "Sign up", class: "btn btn-info" %>
+  </div><!-- card -->
+<% end %>
+<%= render "admins/shared/links"%>

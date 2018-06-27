@@ -1,0 +1,16 @@
+//********* Base File for SCSS *************//
+
+//bootstrap variables
+
+// Bootstrap
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+//NavBar classes
+.navTexTsizing {
+  font-size: 1em;
+}
+//Car block sizing
+.bsize{
+  width: 9%;
+}

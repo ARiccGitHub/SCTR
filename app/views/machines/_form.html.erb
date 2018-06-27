@@ -1,0 +1,120 @@
+<!--
+      Form partial
+-->
+
+<!--Partial rendered by locations/edit.html.erb and costumers/new.html.erb-->
+
+<!-- errors management -->
+<%  if @machine.errors.any? %>
+ <div class="alert alert-danger" role="alert">
+   <p><%= pluralize( @machine.errors.count, "error") %> Prevented the machine's from being submited</p>
+   <ul>
+     <% @machine.errors.messages.each do |field,errors|  %>
+       <% errors.each do |error| %>
+         <li> Problems with <%= field %>: <%= error %></li>
+       <% end %>
+     <% end %>
+   </ul>
+ </div>
+<% end %>
+
+<div class="p-3">
+<!-- Buffer Block -->
+</div>
+
+<!-- Machine's form, edit/new -->
+
+<!-- Customer Number name phone -->
+<div class="card w-50 shadow">
+  <div class="card-body d-flex flex-row justify-content-between ">
+    <div>
+      <div>
+        <h6 class="pt-3 pr-3"><%= @location.customer.bus_name %></h6>
+        <h6 class="pt-3 pr-3">Location:&#160;<%= @location.name%></h6>
+        <h6 class="pt-3 pr-3">Tel:&#160;<%= @location.phone%></h6>
+      </div>
+    </div>
+    <div>
+      <h6 class="pt-3 pr-3">Customer number: <%= @location.customer_number %></h6>
+    </div>
+  </div>
+</div>
+
+<%= form_for @machine do |f| %>
+<!--machines Info -->
+  <div class="d-flex flex-row shadow"><!-- cards wrapper -->
+    <!-- machines Name -->
+    <div class="card w-50" >
+      <div class="card-header formHeadBlockSizing d-flex flex-row justify-content-between">
+        <h5 >Machines number:&#160;<%= f.text_field :machine_number, class: "form-control-sm mt-1" %>*</h5>
+        <div>
+          <% if @machine.machine_number == nil  %>
+            <%= link_to "Delete", machines_path(@machine), class: 'btn btn-outline-danger disabled', data: {confirm: "Are you sure?"}, method: :delete %>
+          <% else %>
+            <%= link_to "Delete", machines_path(@machine), class: 'btn btn-outline-danger', data: {confirm: "Are you sure?"}, method: :delete %>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="d-flex flex-column">
+          <p class="card-text">Model:&#160;&#160;&#160;&#160;<%= f.text_field :model, class: "form-control-sm" %></p>
+          <p class="card-text">Serial#:&#160;<%= f.text_field :serial_number, class: "form-control-sm w-75" %></p>
+          <p></p>
+          <!-- Address -->
+          <h4 class="card-title">Machine location on site:</h4>
+          <p class="card-text "><%= f.text_field :on_location, placeholder:"On location",class: "form-control-sm w-100" %></p>
+        </div>
+        <!-- data params to pass submitted along with form-->
+        <%= f.hidden_field :customer_number, value: @location.customer_number%>
+        <%= f.hidden_field :location_id, value: @location.id %>
+      </div><!-- card-body -->
+
+      <!-- Submit, Admin permission lvl-1 or lower, access-->
+      <%= f.submit "Submit", class: "btn btn-info"%>
+    </div><!-- card -->
+    <% end %>
+    <!-- Contact Infomation -->
+    <% if @location.contact_email != nil %>
+      <!-- Contact does exist -->
+      <!-- Contact Infomation -->
+      <div class="card w-50 cardSizing">
+        <div class="card-header d-flex justify-content-between">
+          <h5>Location contact</h5>
+        </div>
+        <div class="card-body">
+          <!-- Name -->
+          <div class="d-flex flex-row justify-content-between">
+            <div>
+              <p class="card-text"><strong>Title:&#160;</strong><%= @location.contact_title %></p>
+              <p class="card-text"><strong>First name:&#160;</strong><%= @location.contact__first_name %></p>
+              <p class="card-text"><strong>Last name:&#160;</strong><%= @location.contact__last_name %></P>
+            </div>
+            <!-- Phone and email -->
+            <div class="mr-3">
+              <p class="card-text"></p>
+              <p class="card-text"><strong>Tel:&#160;</strong><%= @location.contact_phone %></p>
+              <p class="card-text"><strong>Email:&#160;</strong><%= @location.contact_email %></p>
+          </div>
+        </div><!-- card-body -->
+      </div><!-- card -->
+      <!-- Edit, Admin permission lvl-1 or lower, access-->
+      <%# if location exists, link to the location contact partial edit %>
+      <% if @location.customer.bus_name != nil %>
+        <%= link_to "Edit", location_contact_path(@location), class: 'btn btn-info'%>
+      <% end %>
+    <% else %>
+        <!-- Contact does not exist -->
+        <div class="card w-50 cardSizing">
+          <!--  contact partial -->
+          <%= render  'noContact' %>
+          <!-- Add, Admin permission lvl-1 or lower, access-->
+          <!-- checks if contact exist for edit rendering, if yes it disables add link -->
+          <% if @location.customer.bus_name != nil and @location.contact_email == nil %>
+              <%= link_to "Add", location_contact_path(@location), class: 'btn btn-info mt-0' %>
+          <% else %>
+            <%= link_to "Add", root_path, class: "btn btn-info mt-0 disabled" %>
+          <% end %>
+        </div><!-- card -->
+    <% end %>
+
+  </div><!-- cards wrapper -->

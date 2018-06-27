@@ -1,0 +1,37 @@
+<!--
+            Admins with permissions lvl-1 or lower are allower to access this page, customer-no
+-->
+
+<!--
+select customer to creat a new customer account
+ -->
+
+<h1 class="card-header">Customer select</h1>
+<div class="p-3">
+<!-- Buffer Block -->
+</div>
+<%= paginate @customers %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Email</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @customers.each do |customer| %>
+    <tr>
+      <td><%= customer.customer_number %></td>
+      <td><%= customer.bus_name %></td>
+      <td><%= customer.phone %></td>
+      <td><%= customer.email %></td>
+      <td><%= link_to "Select", new_account_registration_path,
+        class: "btn-sm btn-info  mt-2  p-1"%></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= paginate @customers %>
