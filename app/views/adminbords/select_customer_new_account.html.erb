@@ -3,8 +3,7 @@
 -->
 
 <!--
-select customer to creat a new costumer account
-list all the customer information contacts, location and machines
+select customer to creat a new customer account
  -->
 
 <h1 class="card-header">Customer select</h1>
@@ -29,7 +28,6 @@ list all the customer information contacts, location and machines
       <td><%= customer.bus_name %></td>
       <td><%= customer.phone %></td>
       <td><%= customer.email %></td>
-      <% @customer = customer %>
       <td><%= link_to "Select", new_account_registration_path,
         class: "btn-sm btn-info  mt-2  p-1"%></td>
     </tr>

@@ -23,9 +23,9 @@
         <td><%= location.contact__first_name %></td>
         <td><%= location.contact_phone%></td>
         <td><%= link_to "Show", location_path(location),
-          class: "btn-sm btn-primary  mt-2  p-1"%></td>
+          class: "btn-sm btn-info  mt-2  p-1"%></td>
       </tr>
     <% end %>
     </tbody>
   </table>
-  <%= paginate @locations %>
+<%= paginate @locations %>

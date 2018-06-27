@@ -1,0 +1,70 @@
+<!--
+             customer-only
+-->
+
+<!--
+Form Machine Registration
+ -->
+<!-- errors management -->
+<%  if @service_call.errors.any? %>
+ <div class="alert alert-danger" role="alert">
+   <p><%= pluralize( @service_call.errors.count, "error") %> Prevented the service call's from being submited</p>
+   <ul>
+     <% @service_call.errors.messages.each do |field,errors|  %>
+       <% errors.each do |error| %>
+         <li> Problems with <%= field %>: <%= error %></li>
+       <% end %>
+     <% end %>
+   </ul>
+ </div>
+<% end %>
+
+<div class="p-3">
+<!-- Buffer Block -->
+</div>
+
+<!-- Machine's form, edit/new -->
+
+<!-- Customer Number name phone -->
+<div class = "ml-5">
+<div class="card w-75 shadow">
+  <div class="card-body d-flex flex-row justify-content-between">
+    <div>
+      <div>
+        <h6 class="pt-3 pr-3"><%= @machine.location.customer.bus_name %></h6>
+        <h6 class="pt-3 pr-3">Location:&#160;<%= @machine.location.name%></h6>
+        <h6 class="pt-3 pr-3">Tel:&#160;<%= @machine.location.phone%></h6>
+      </div>
+    </div>
+    <div>
+      <h6 class="pt-3 pr-3">Customer number: <%= current_account.customer_number %></h6>
+      <h6 classclass="pt-3 pr-3"> <%= current_account.first_name %> <%= current_account.last_name %> </h6>
+      <h6 classclass="pt-3 pr-3"> <%= current_account.email %></h6>
+    </div>
+  </div>
+</div>
+
+
+  <!-- machines Name -->
+  <div class="card w-75 shadow" >
+    <div class="card-header d-flex flex-row justify-content-between">
+      <div><h6>Machines#:&#160;<%= @machine.machine_number %></h6>
+      <h5>Model:&#160;<%= @machine.model %></h5></div>
+      <h5 class="ml-5">location:&#160;<%= @machine.on_location %></h5>
+    </div>
+  <%= form_for @service_call, url: machine_service_calls_path(@machine) do |f| %>
+    <div class="card-body d-flex justify-content-center">
+      <div class="d-flex flex-column form-group">
+        <p class="card-text">Describe the issue:</p>
+        <p class="card-text"><%= f.text_area :description, size: "90x10", class: "form-control-sm" %></p>
+      </div>
+      <!-- data params to pass submitted along with-->
+      <%= f.hidden_field :machine_id, value: @machine.id %>
+      <%= f.hidden_field :customer_number, value: current_account.customer_number %>
+      <%= f.hidden_field :account_id, value: current_account.id %>
+    </div><!-- card-body -->
+    <!-- Submit, Admin permission lvl-1 or lower, access-->
+    <%= f.submit "Submit", class: "btn btn-info"%>
+  </div><!-- card -->
+<% end %>
+</div>

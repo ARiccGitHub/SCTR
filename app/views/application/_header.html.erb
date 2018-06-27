@@ -33,3 +33,73 @@
     </form>
   </div>
 </nav>
+<% if account_signed_in?%>
+  <!-- Customer -->
+  <div class="fixed-top mt-5 ml-3">
+    <div class="shadow mt-5" style="width: 15rem">
+      <ul class="list-unstyled m-0">
+        <li><%= link_to "New Service call", customer_location_select_machine_service_path(current_account.customer, current_account.locations), class: 'btn btn  btn-light  w-100' %></li>
+        <li><%= link_to "Locations", new_customer_path, class: 'btn  btn-light  w-100' %></li>
+        <li><%= link_to "Service calls index", new_customer_path, class: 'btn  btn-light w-100' %></li>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<% if admin_signed_in?%>
+  <!-- Customer -->
+<div class="mt-5 ml-5 fixed-top bsize">
+  <div class=" mt-5 d-flex flex-column">
+
+    <div class="btn-group mt-1 p">
+      <button class="btn btn-large shadow">Customers&#160;&#160;&#160;</button>
+      <button class="btn btn-mini dropdown-toggle shadow" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pt-0 pb-0 shadow">
+        <li><%= link_to "Index", customers_path, class: 'btn  btn-light w-100' %></li>
+        <li><%= link_to "New", new_customer_path, class: 'btn btn-light w-100' %></li>
+      </ul>
+    </div>
+    <div class="btn-group mt-1">
+      <button class="btn btn-large shadow">Locations&#160;&#160;&#160;&#160;&#160;</button>
+      <button class="btn btn-mini dropdown-toggle shadow" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pt-0 pb-0 shadow">
+        <li><%= link_to "Index", locations_path, class: 'btn btn-light w-100' %></li>
+        <li><%= link_to "New", select_customer_new_location_path, class: 'btn btn-light w-100' %></li>
+      </ul>
+    </div>
+    <div class="btn-group mt-1">
+      <button class="btn btn-large shadow">Machines&#160;&#160;&#160;&#160;&#160;</button>
+      <button class="btn btn-mini dropdown-toggle shadow" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pt-0 pb-0 shadow">
+        <li><%= link_to "Index", machines_path, class: 'btn btn-light w-100' %></li>
+        <li><%= link_to "New", select_customer_new_machine_path, class: 'btn btn-light w-100' %></li>
+      </ul>
+    </div>
+    <div class="btn-group mt-1">
+      <button class="btn btn-large shadow">Accounts&#160;&#160;&#160;&#160;&#160;</button>
+      <button class="btn btn-mini dropdown-toggle shadow" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pt-0 pb-0 shadow">
+        <li><%= link_to "Index", adminbord_accounts_path(1), class: 'btn btn-light w-100' %></li>
+        <li><%= link_to "New",select_customer_new_account_path, class: 'btn btn-light w-100' %></li>
+    </div>
+    <div class="btn-group mt-1">
+      <button class="btn btn-large shadow">Service calls</button>
+      <button class="btn btn-mini dropdown-toggle shadow" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pt-0 pb-0 shadow">
+        <li><%= link_to "Index", service_calls_path, class: 'btn btn-light w-100' %></li>
+        <li><%= link_to "Delete", service_calls_path, class: 'btn btn-light w-100' %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<% end %>

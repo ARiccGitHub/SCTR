@@ -1,0 +1,32 @@
+Service Calls Ticket Request:
+
+Customer
+Number: <%= @account.customer_number %>
+<%= @account.customer.bus_name %>
+
+machine#: <%= @machine.machine_number %>
+
+model: <%= @machine.model %>
+<%= @machine.serial_number %>
+
+Requested by:
+<%= @account.title %>
+<%= @account.first_name %> <%= @account.last_name %>
+<%= @account.email %>
+
+Service request description:
+<%= @service_call.description %>
+
+On location: <%= @machine.on_location %>
+Address:
+<%= @location.suite %>
+<%= @location.street %>
+<%= @location.city %>, <%= @location.state %>
+<%= @location.zip_code %> <%= @location.country %>
+
+Contact:
+<%= @location.contact_title %>
+<%= @location.contact__first_name %> <%= @location.contact__last_name %>
+
+phone: <%= @location.contact_phone %>
+email: <%= @location.contact_email %></

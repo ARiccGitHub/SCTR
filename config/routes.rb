@@ -28,8 +28,11 @@ Rails.application.routes.draw do
      get 'select_location', to: 'customers#select_location'
      resources :locations do
        get 'contact', to: 'locations#contact'
+       get 'select_machine_service', to: 'locations#select_machine_service'
        ## Machine
        resources :machines do
+         resources :service_calls do
+         end
        end
      end
    end
@@ -48,10 +51,16 @@ Rails.application.routes.draw do
      get 'contact', to: 'locations#contact'
      ## Machine
      resources :machines do
+       resources :service_calls do
+       end
      end
   end
   # achines
    resources :machines do
+     resources :service_calls do
+     end
+   end
+   resources :service_calls do
    end
 
 

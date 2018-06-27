@@ -3,8 +3,7 @@
 -->
 
 <!--
-select customer to creat a new new redirect to select location
-list all the customer information contacts, location and machines
+select customer to creat a new machine redirect to select location
  -->
 <h1 class="card-header">Customer select</h1>
 <div class="p-3">
@@ -25,7 +24,7 @@ list all the customer information contacts, location and machines
   <% @customers.each do |customer| %>
     <tr>
       <td><%= customer.customer_number %></td>
-      <td><%= customer.name %></td>
+      <td><%= customer.bus_name %></td>
       <td><%= customer.phone %></td>
       <td><%= customer.email %></td>
       <td><%= link_to "Select", customer_select_location_path(customer),

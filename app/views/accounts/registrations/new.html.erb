@@ -1,7 +1,6 @@
 <!--
 Admins with permissions lvl-2 or lower are allower to access this page, customer-no
 -->
-
 <!--
 Customer account registration
 list all the machine information contacts and location
@@ -29,7 +28,7 @@ list all the machine information contacts and location
         <p class="card-title">Email:</p>
         <p><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control-sm" %>*</p>
         <p></p>
-        <!-- Address -->
+        <!-- password -->
         <h4 class="card-title">Passwords</h4>
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>

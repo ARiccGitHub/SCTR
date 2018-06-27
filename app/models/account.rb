@@ -15,7 +15,6 @@ validates :first_name, presence: true
 
  belongs_to :customer
  has_many :service_calls
- has_many :permit_account
  has_many :accounts_locations
  has_many :locations, through: :accounts_locations
 end

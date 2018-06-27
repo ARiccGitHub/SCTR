@@ -1,6 +1,6 @@
 class Machine < ApplicationRecord
   ## Validation
-  validates :customer_number, presence: true
+  
 
 
   # kaminari gem

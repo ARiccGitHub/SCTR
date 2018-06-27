@@ -1,3 +1,11 @@
+<!--
+            Admins with permissions lvl-1 or lower are allower to access this page, customer-no
+-->
+
+<!--
+select location to add to an  account
+ -->
+
 <h1 class="card-header">Select Customer's Account Locations</h1>
 
 <div class="card w-50 ">
@@ -15,7 +23,7 @@
     </div>
   </div>
 </div>
-<% account = @account %>
+
 <%= paginate @locations %>
 <%= form_tag  save_account_locations_path([@account], [:selected_location_ids]), method: :post do %>
   <table class="table">
@@ -31,9 +39,8 @@
     </thead>
     <tbody>
     <% @locations.each do |location| %>
-      <%# checking for duplicate %>
-      <% @account.locations.each do |account_location| %>
-          <% unless account_location == location %>
+      <%# @account.locations.each do |acc_location|%>
+          <%# if acc_location != location %>
             <tr>
               <td><%= location.customer_number %></td>
               <td><%= location.customer.bus_name %></td>
@@ -42,8 +49,8 @@
               <td><%= location.contact_phone%></td>
               <td><%= check_box_tag "selected_location_ids[]", location.id %></td>
             </tr>
-        <% end %>
-      <% end %>
+          <%# end %>
+        <%# end %>
     <% end %>
     </tbody>
   </table>

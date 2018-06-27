@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_25_192758) do
+ActiveRecord::Schema.define(version: 2018_06_27_131235) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "customer_number"
@@ -110,29 +110,27 @@ ActiveRecord::Schema.define(version: 2018_06_25_192758) do
   end
 
   create_table "machines", force: :cascade do |t|
-    t.string "customer_number"
     t.string "machine_number"
-    t.string "model"
-    t.string "serial_number"
+    t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "location_contact_phone"
-    t.string "location_contact_name"
+    t.string "serial_number"
+    t.string "model"
     t.string "on_location"
-    t.integer "customer_id"
-    t.integer "location_id"
-    t.string "location_phone"
-    t.index ["customer_id"], name: "index_machines_on_customer_id"
-    t.index ["customer_number"], name: "index_machines_on_customer_number"
+    t.string "customer_number"
     t.index ["location_id"], name: "index_machines_on_location_id"
   end
 
-  create_table "permit_accounts", force: :cascade do |t|
-    t.integer "account_id"
-    t.integer "location"
+  create_table "service_calls", force: :cascade do |t|
+    t.string "customer_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_permit_accounts_on_account_id"
+    t.integer "account_id"
+    t.integer "machine_id"
+    t.text "description"
+    t.index ["account_id"], name: "index_service_calls_on_account_id"
+    t.index ["customer_number"], name: "index_service_calls_on_customer_number"
+    t.index ["machine_id"], name: "index_service_calls_on_machine_id"
   end
 
 end

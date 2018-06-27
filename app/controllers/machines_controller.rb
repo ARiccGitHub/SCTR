@@ -4,34 +4,26 @@ class MachinesController < ApplicationController
     ### condition.before_action if condition is true
     ###  set what actions can be call before using all or some CRUD functions
 
-    before_action :set_machine, only: [:edit, :update, :destroy]
+    before_action :set_machine, only: [:edit, :update, :destroy, :show]
 
     def index
       @machines = Machine.order(:machine_number).page params[:page]
     end
 
     def new
-      # will creates a machine array,
-      # pushs customer_number, location.id and customer_id,  posts array
-      @machine = Machine.new
       @location = Location.find(params[:location_id])
-      # Costumer info added
-      @machine.customer_number = @location.customer_number
-      @machine.customer_id = @location.customer
-      @machine.location_id = @location
-      # Location added
-      @machine.location = @location
-      # Save
-      if @machine.save
-        render 'new'
-      else
-        flash.now[:notice] = "error"
-        render 'new'
-      end
+      @machine = Machine.new
     end
 
     def create
-
+        @machine = Machine.new(machine_params)
+        @machine.save
+        if @machine.customer_number == nil
+          flash.now[:notice] = "error"
+          render 'new'
+        else
+          redirect_to machine_path(@machine)
+        end
     end
 
     def edit
@@ -39,11 +31,12 @@ class MachinesController < ApplicationController
     end
 
     def show
-      @machine = Machine.find(params[:id])
+
     end
 
     def update
       if @machine.update(machine_params)
+
         redirect_to machine_path(@machine)
       else
         flash.now[:notice] = "error"
@@ -63,6 +56,7 @@ class MachinesController < ApplicationController
       end
 
       def machine_params
-        params.require(:machine).permit(:customer_number, :machine_number, :model, :serial_number, :on_location)
+        params.require(:machine).permit(:customer_number, :machine_number,
+          :model, :serial_number, :on_location, :location_id)
       end
 end
