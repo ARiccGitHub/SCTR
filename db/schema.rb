@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_21_034528) do
+ActiveRecord::Schema.define(version: 2018_06_27_131235) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "customer_number"
@@ -29,14 +29,23 @@ ActiveRecord::Schema.define(version: 2018_06_21_034528) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "customer_id"
+    t.index ["customer_id"], name: "index_accounts_on_customer_id"
     t.index ["customer_number"], name: "index_accounts_on_customer_number"
     t.index ["email"], name: "index_accounts_on_email", unique: true
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
+  create_table "accounts_locations", force: :cascade do |t|
+    t.integer "account_id"
+    t.integer "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_accounts_locations_on_account_id"
+    t.index ["location_id"], name: "index_accounts_locations_on_location_id"
+  end
+
   create_table "admins", force: :cascade do |t|
-    t.string "customer_number"
-    t.string "title"
     t.string "first_name"
     t.string "last_name"
     t.string "email", default: "", null: false
@@ -51,13 +60,13 @@ ActiveRecord::Schema.define(version: 2018_06_21_034528) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
   create_table "customers", force: :cascade do |t|
     t.string "customer_number"
-    t.string "name"
     t.string "suite"
     t.string "street"
     t.string "city"
@@ -73,6 +82,7 @@ ActiveRecord::Schema.define(version: 2018_06_21_034528) do
     t.string "phone"
     t.string "main_contact_title"
     t.string "email"
+    t.string "bus_name"
     t.index ["customer_number"], name: "index_customers_on_customer_number"
   end
 
@@ -92,29 +102,35 @@ ActiveRecord::Schema.define(version: 2018_06_21_034528) do
     t.datetime "updated_at", null: false
     t.string "phone"
     t.string "contact_title"
-    t.integer "customer_id"
     t.string "name"
     t.string "email"
+    t.integer "customer_id"
     t.index ["customer_id"], name: "index_locations_on_customer_id"
     t.index ["customer_number"], name: "index_locations_on_customer_number"
   end
 
   create_table "machines", force: :cascade do |t|
-    t.string "customer_number"
     t.string "machine_number"
-    t.string "model"
-    t.string "serial_number"
+    t.integer "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "location_contact_phone"
-    t.string "location_contact_name"
+    t.string "serial_number"
+    t.string "model"
     t.string "on_location"
-    t.integer "customer_id"
-    t.integer "location_id"
-    t.string "location_phone"
-    t.index ["customer_id"], name: "index_machines_on_customer_id"
-    t.index ["customer_number"], name: "index_machines_on_customer_number"
+    t.string "customer_number"
     t.index ["location_id"], name: "index_machines_on_location_id"
+  end
+
+  create_table "service_calls", force: :cascade do |t|
+    t.string "customer_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "account_id"
+    t.integer "machine_id"
+    t.text "description"
+    t.index ["account_id"], name: "index_service_calls_on_account_id"
+    t.index ["customer_number"], name: "index_service_calls_on_customer_number"
+    t.index ["machine_id"], name: "index_service_calls_on_machine_id"
   end
 
 end

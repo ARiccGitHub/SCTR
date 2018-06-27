@@ -4,9 +4,11 @@ class Location < ApplicationRecord
 
 
   # kaminari gem
-  paginates_per 10
+  paginates_per 5
 
   belongs_to :customer
   has_many :machines
-
+  has_many :service_calls, through: :machines
+  has_many :accounts_locations
+  has_many :accounts, through: :accounts_locations
 end

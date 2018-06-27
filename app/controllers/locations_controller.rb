@@ -4,8 +4,13 @@ class LocationsController < ApplicationController
     ### condition.before_action if condition is true
     ###  set what actions can be call before using all or some CRUD functions
 
-    before_action :set_location, only: [:edit, :update, :destroy, :create]
-    before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy, :index]
+    before_action :set_location, only: [:edit, :update, :destroy, :show]
+
+    # select Machine to Serivce call
+    def select_machine_service
+      locations = current_account.locations
+      @locations = locations.order(:name).page params[:page]
+    end
 
     # link to the location contact
     def contact
@@ -16,25 +21,20 @@ class LocationsController < ApplicationController
       @locations = Location.order(:name).page params[:page]
     end
 
-    def new # post
-      # will creates a location array, pushs
-      # customer_number customer bus_name bus_phone and post array
-      # redirect to put (edit)
-      @location = Location.new
+    def new
       @customer = Customer.find(params[:customer_id])
-      @location.customer_number = @customer.customer_number
-      @location.customer = @customer
-
-      if @location.save
-        render 'new'
-      else
-        flash.now[:notice] = "error"
-        render 'new'
-      end
+      @location = Location.new
     end
 
     def create
-
+       @location = Location.new(location_params)
+       @location.save
+      unless @location.customer_number == nil
+         redirect_to customer_location_path(@location.customer, @location)
+      else
+         lash.now[:notice] = "error"
+         render 'new'
+      end
     end
 
     def edit
@@ -42,12 +42,13 @@ class LocationsController < ApplicationController
     end
 
     def show
-      @location = Location.find(params[:id])
+
     end
 
     def update
       if @location.update(location_params)
-        redirect_to location_path(@location)
+
+        redirect_to customer_location_path(@location.customer, @location)
       else
         flash.now[:notice] = "error"
         render 'edit'
@@ -59,7 +60,7 @@ class LocationsController < ApplicationController
         redirect_to locations_path
     end
 
-    private
+  private
 
       def set_location
         @location = Location.find(params[:id])

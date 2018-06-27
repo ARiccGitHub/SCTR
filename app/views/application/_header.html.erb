@@ -1,35 +1,12 @@
 <!-- Partial rendered by layouts/application.html.erb -->
 
 <!-- Navigation bar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <%= link_to "SCTR", root_path, class: "navbar-brand text-secondery" %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <% if admin_signed_in?%>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Admin tools
-          </a>
-          <div class="dropdown-menu bg-light" aria-labelledby="navbarDropdown">
-            <%= link_to "Customer Index", customers_path, class: "ml-2 navbar-brand text-secondery navTexTsizing" %>
-            <%= link_to "Register a new customer", new_customer_path, class: "ml-2 navbar-brand text-secondery navTexTsizing" %>
-            <div class="dropdown-divider"></div>
-            <%= link_to "Register a machine", new_machine_path, class: "ml-2 navbar-brand text-secondery navTexTsizing" %>
-            <%= link_to "Create a customer log in", customers_path, class: "ml-2 navbar-brand text-secondery navTexTsizing" %>
-            <%= link_to "Add a location", customers_path, class: "ml-2 navbar-brand text-secondery navTexTsizing" %>
-          </div>
-        </li>
-      <% end %>
       <% if account_signed_in?%>
         <li class="nav-item textColorGray mt-2">Hello <%= current_account.first_name %></li>
       <% elsif admin_signed_in?%>
@@ -38,18 +15,16 @@
     </ul>
 
     <form class="form-inline my-2 my-lg-0">
-
-
-      <%= link_to "Customer Index", customers_path, class: "navbar-brand text-secondery navTexTsizing" %>
       <% if account_signed_in? or admin_signed_in?%>
         <% if account_signed_in?%>
           <%= link_to "Log out", destroy_account_session_path, class: 'nav-link text-dark', method: :delete%>
         <% else %>
+          <%= link_to "Dashbord", adminbords_path, class: 'nav-link text-dark' %>
           <%= link_to "Log out", destroy_admin_session_path, class: 'nav-link text-dark', method: :delete%>
         <% end %>
       <% else %>
-        <%= link_to "Customer Log in", new_account_session_path, class: 'nav-link text-dark'%>
-        <%= link_to "Admin Log in", new_admin_session_path, class: 'nav-link text-dark'%>
+        <%= link_to "Log in", new_account_session_path, class: 'nav-link text-dark'%>
+        <%= link_to "Admin log in", new_admin_session_path, class: 'nav-link text-dark'%>
       <% end %>
 
 
@@ -58,3 +33,73 @@
     </form>
   </div>
 </nav>
+<% if account_signed_in?%>
+  <!-- Customer -->
+  <div class="fixed-top mt-5 ml-3">
+    <div class="shadow mt-5" style="width: 15rem">
+      <ul class="list-unstyled m-0">
+        <li><%= link_to "New Service call", customer_location_select_machine_service_path(current_account.customer, current_account.locations), class: 'btn btn  btn-light  w-100' %></li>
+        <li><%= link_to "Locations", new_customer_path, class: 'btn  btn-light  w-100' %></li>
+        <li><%= link_to "Service calls index", new_customer_path, class: 'btn  btn-light w-100' %></li>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<% if admin_signed_in?%>
+  <!-- Customer -->
+<div class="mt-5 ml-5 fixed-top bsize">
+  <div class=" mt-5 d-flex flex-column">
+
+    <div class="btn-group mt-1 p">
+      <button class="btn btn-large shadow">Customers&#160;&#160;&#160;</button>
+      <button class="btn btn-mini dropdown-toggle shadow" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pt-0 pb-0 shadow">
+        <li><%= link_to "Index", customers_path, class: 'btn  btn-light w-100' %></li>
+        <li><%= link_to "New", new_customer_path, class: 'btn btn-light w-100' %></li>
+      </ul>
+    </div>
+    <div class="btn-group mt-1">
+      <button class="btn btn-large shadow">Locations&#160;&#160;&#160;&#160;&#160;</button>
+      <button class="btn btn-mini dropdown-toggle shadow" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pt-0 pb-0 shadow">
+        <li><%= link_to "Index", locations_path, class: 'btn btn-light w-100' %></li>
+        <li><%= link_to "New", select_customer_new_location_path, class: 'btn btn-light w-100' %></li>
+      </ul>
+    </div>
+    <div class="btn-group mt-1">
+      <button class="btn btn-large shadow">Machines&#160;&#160;&#160;&#160;&#160;</button>
+      <button class="btn btn-mini dropdown-toggle shadow" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pt-0 pb-0 shadow">
+        <li><%= link_to "Index", machines_path, class: 'btn btn-light w-100' %></li>
+        <li><%= link_to "New", select_customer_new_machine_path, class: 'btn btn-light w-100' %></li>
+      </ul>
+    </div>
+    <div class="btn-group mt-1">
+      <button class="btn btn-large shadow">Accounts&#160;&#160;&#160;&#160;&#160;</button>
+      <button class="btn btn-mini dropdown-toggle shadow" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pt-0 pb-0 shadow">
+        <li><%= link_to "Index", adminbord_accounts_path(1), class: 'btn btn-light w-100' %></li>
+        <li><%= link_to "New",select_customer_new_account_path, class: 'btn btn-light w-100' %></li>
+    </div>
+    <div class="btn-group mt-1">
+      <button class="btn btn-large shadow">Service calls</button>
+      <button class="btn btn-mini dropdown-toggle shadow" data-toggle="dropdown">
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu pt-0 pb-0 shadow">
+        <li><%= link_to "Index", service_calls_path, class: 'btn btn-light w-100' %></li>
+        <li><%= link_to "Delete", service_calls_path, class: 'btn btn-light w-100' %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<% end %>

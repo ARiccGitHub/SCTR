@@ -1,4 +1,4 @@
-  <h1 class="card-header">Location Index</h1>
+  <h1 class="card-header shadow-sm">Machine Index</h1>
   <%= paginate @machines %>
   <table class="table">
     <thead class="thead-light">
@@ -17,14 +17,14 @@
     <% @machines.each do |machine| %>
       <tr>
         <td><%= machine.customer_number %></td>
-        <td><%= location.customer.name %></td>
+        <td><%= machine.location.customer.bus_name %></td>
         <td><%= machine.location.name %></td>
         <td><%= machine.machine_number %></td>
         <td><%= machine.model %></td>
         <td><%= machine.location.contact__first_name %></td>
         <td><%= machine.location.contact_phone%></td>
-        <td><%= machine.link_to "Show", machine_path(machine),
-          class: "btn-sm btn-primary  mt-2  p-1"%></td>
+        <td><%= link_to "Show", machine_path(machine),
+          class: "btn-sm btn-info  mt-2  p-1" %></td>
       </tr>
     <% end %>
     </tbody>

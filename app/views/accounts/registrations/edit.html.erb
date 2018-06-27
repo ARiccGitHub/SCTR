@@ -1,43 +1,42 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="p-2">
+<!-- Buffer Block -->
+</div>
+<h2 class="card-header shadow-sm">Edit <%= resource_name.to_s.humanize %></h2>
+<div class="p-3">
+<!-- Buffer Block -->
+</div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <div class="card w-50 shadow" >
+    <h5 class="card-header formHeadBlockSizing"></h5>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+    <div class="card-body">
+      <div class="d-flex flex-column">
+        <!-- Name and Email -->
+        <h4 class="card-title">Name:</h4>
+        <p class="card-text">Title:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<%= f.text_field :title, class: "form-control-sm w-25" %>*</p>
+        <p class="card-text">First name:&#160;<%= f.text_field :first_name, class: "form-control-sm" %>*</p>
+        <p class="card-text">Last name:&#160;<%= f.text_field :last_name, class: "form-control-sm" %>*</p>
+        <p class="card-title">Email:</p>
+        <p><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control-sm" %>*</p>
+        <p></p>
+        <!-- Address -->
+        <h4 class="card-title">Passwords</h4>
+        <% if @minimum_password_length %><i>(leave blank if you don't want to change it)</i>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <p class="card-text "><%= f.password_field :password, autocomplete: "off", class: "form-control-sm w-50" %></p>
+        <p class="card-text "><%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control-sm w-50" %></p>
+      </div>
+    </div><!-- card-body -->
+    <%= f.submit "Update", class: "btn btn-info" %>
+  </div><!-- card -->
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>Cancel  account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p><%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
 <%= link_to "Back", :back %>

@@ -1,0 +1,3 @@
+class Adminbord < ApplicationRecord
+  
+end

@@ -1,26 +1,35 @@
-<h2>Log in</h2>
-
+<!--
+Admins with permissions lvl-2 or lower are allower to access this page, customer-no
+-->
+<!--
+log in
+list all the machine information contacts and location
+-->
+<div class="p-2">
+<!-- Buffer Block -->
+</div>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="card w-50 shadow" >
+    <h5 class="card-header">Customer log in</h5>
+  <div class="card-body">
+    <div class="d-flex flex-column">
+      <p class="card-title">Email:</p>
+      <p><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control-sm" %>*</p>
+      <p></p>
+      <!-- password -->
+      <h4 class="card-title">Passwords</h4>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <p class="card-text "><%= f.password_field :password, autocomplete: "off", class: "form-control-sm w-50" %></p>
+      <div class="field">
+        <%= f.check_box :remember_me %>
+        <%= f.label :remember_me %>
+      </div>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
+  </div><!-- card-body -->
+  <%= f.submit "Submit", class: "btn btn-info" %>
+</div><!-- card -->
 <% end %>
-
 <%= render "accounts/shared/links" %>

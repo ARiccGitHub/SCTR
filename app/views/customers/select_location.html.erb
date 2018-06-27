@@ -1,4 +1,13 @@
-<h3 class="card-header"> Select a location</h3>
+<!--
+            Admins with permissions lvl-1 or lower are allower to access this page, customer-no
+-->
+
+<!--
+select locationto create a new machine
+list all the customer information contacts, location and machines
+ -->
+
+<h3 class="card-header">Select a location</h3>
 <div class="p-3">
 <!-- Buffer Block -->
 </div>
@@ -18,7 +27,7 @@
   <% @locations.each do |location| %>
     <tr>
       <td><%= location.customer_number %></td>
-      <td><%= location.customer.name %></td>
+      <td><%= location.customer.bus_name %></td>
       <td><%= location.name %></td>
       <td><%= location.contact__first_name %></td>
       <td><%= location.contact_phone%></td>

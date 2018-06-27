@@ -1,0 +1,32 @@
+<h1 class="card-header shadow-sm">Service calls Index</h1>
+<%= paginate @service_calls %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">Customer's number</th>
+      <th scope="col">Costomer's name</th>
+      <th scope="col">Location's name</th>
+      <th scope="col">Machine's number</th>
+      <th scope="col">Model</th>
+      <th scope="col">Account name</th>
+      <th scope="col">Account email</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @service_calls.each do |service_call| %>
+    <tr>
+      <td><%= service_call.customer_number %></td>
+      <td><%= service_call.machine.location.customer.bus_name %></td>
+      <td><%= service_call.machine.location.name %></td>
+      <td><%= service_call.machine.machine_number %></td>
+      <td><%= service_call.machine.model %>
+      <td><%= service_call.account.first_name %></td>
+      <td><%= service_call.account.email%></td>
+      <td><%= link_to "Show", service_call_path(service_call),
+        class: "btn-sm btn-info  mt-2  p-1" %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= paginate @service_calls %>

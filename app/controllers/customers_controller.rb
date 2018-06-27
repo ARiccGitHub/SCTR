@@ -5,20 +5,18 @@ class CustomersController < ApplicationController
   ###  set what actions can be call before using all or some CRUD functions
 
   before_action :set_customer, only: [:edit, :update, :destroy]
-  before_action :authenticate_admin!, only: [:new, :create, :edit, :update, :destroy, :index, :main_contact, :select]
-
 
   # select a customer location to add machine
-  def select
+  def select_location
     @customer = Customer.find(params[:customer_id])
     locations = @customer.locations
     @locations = locations.order(:customer_number).page params[:page]
   end
-
+  # main contact customer
   def main_contact
     @customer = Customer.find(params[:customer_id])
   end
-
+  # costumer lists
   def index
     @customers = Customer.order(:customer_number).page params[:page]
   end
@@ -68,7 +66,9 @@ class CustomersController < ApplicationController
     end
 
     def customer_params
-      params.require(:customer).permit(:customer_number,:name, :phone, :email, :suite, :street, :city, :state, :zip_code, :country,
-         :main_contact_title, :main_contact__first_name, :main_contact__last_name,:main_contact_phone, :main_contact_email)
+      params.require(:customer).permit(:customer_number, :phone, :email, :suite, :street,
+        :city, :state, :zip_code, :country,
+        :main_contact_title, :main_contact__first_name, :main_contact__last_name,
+        :main_contact_phone, :main_contact_email, :bus_name)
     end
 end
