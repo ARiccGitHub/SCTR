@@ -6,6 +6,6 @@ class UserMailer < ApplicationMailer
     @machine = params[:machine]
     @location = params[:location]
     @account = params[:account]
-    mail(to: 'service@gmail.com', subject: 'Service Call Ticket Request')
+    mail(to: 'copyalex@hotmail.com', subject: 'Service Call Ticket Request')
   end
 end
