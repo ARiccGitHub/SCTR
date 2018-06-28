@@ -22,8 +22,6 @@
 <!-- Buffer Block -->
 </div>
 
-<!-- Machine's form, edit/new -->
-
 <!-- Customer Number name phone -->
 <div class="card w-50 shadow">
   <div class="card-body d-flex flex-row justify-content-between ">
@@ -45,7 +43,7 @@
   <div class="d-flex flex-row shadow"><!-- cards wrapper -->
     <!-- machines Name -->
     <div class="card w-50" >
-      <div class="card-header formHeadBlockSizing d-flex flex-row justify-content-between">
+      <div class="card-header d-flex flex-row justify-content-between">
         <h5 >Machines number:&#160;<%= f.text_field :machine_number, class: "form-control-sm mt-1" %>*</h5>
         <div>
           <% if @machine.machine_number == nil  %>

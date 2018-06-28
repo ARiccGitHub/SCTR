@@ -75,5 +75,4 @@ Rails.application.routes.draw do
    get 'adminbords/show_account_register/:account_id', to: 'adminbords#show_account_register', as: 'show_account_register'
    # Post accounts locations
    post 'adminbords/save_account/:account_id/locations/:selected_locations_ids', to: 'adminbords#save_account_locations', as: 'save_account_locations'
-
 end

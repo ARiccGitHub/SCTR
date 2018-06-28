@@ -7,7 +7,7 @@ Location Information
 list all the customer information contacts, location and machines
 -->
 
-<h3 class="card-header shasw-sm">Location information</h3>
+<h3 class="card-header shasw-sm">Location Information</h3>
 
 
 <!-- Customer Number name phone -->
@@ -51,7 +51,7 @@ list all the customer information contacts, location and machines
           <p class="card-text d-flex justify-content-end m-0"><%= @location.country %></p>
         </div>
       </div>
-        <%= link_to "Add machine", new_customer_location_machine_path(@location.customer, @location), class: "btn btn-outline-success mt-5" %>
+        <%= link_to "Add machine", new_customer_location_machine_path(@location.customer, @location), class: "btn btn-outline-info mt-5" %>
     </div><!-- card-body -->
     <%= link_to "Edit", edit_location_path(@location), class: 'btn btn-info' %>
   </div><!-- card -->
@@ -97,13 +97,13 @@ list all the customer information contacts, location and machines
 <div class="p-3">
 <!-- Buffer Block -->
 </div>
-<h4 class="card-header shasw-sm">Machines</h4>
+<h4 class="card-header shasw-sm">Machine</h4>
 <table class="table">
   <thead class="thead-light">
     <tr>
-      <th scope="col">Customer's number</th>
-      <th scope="col">Customer's name</th>
-      <th scope="col">Machine number</th>
+      <th scope="col">Customer#</th>
+      <th scope="col">Customer Name</th>
+      <th scope="col">Number</th>
       <th scope="col">Model</th>
       <th></th>
     </tr>

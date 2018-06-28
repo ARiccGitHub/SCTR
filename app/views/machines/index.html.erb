@@ -1,15 +1,15 @@
   <h1 class="card-header shadow-sm">Machine Index</h1>
   <%= paginate @machines %>
   <table class="table">
-    <thead class="thead-light">
+    <thead class="thead-light text-sm">
       <tr>
-        <th scope="col">Customer's number</th>
-        <th scope="col">Costomer's name</th>
-        <th scope="col">Location's name</th>
-        <th scope="col">Machine's number</th>
+        <th scope="col">Customer#</th>
+        <th scope="col">Location Name</th>
+        <th scope="col">Location</th>
+        <th scope="col">Number</th>
         <th scope="col">Model</th>
-        <th scope="col">Contact' name</th>
-        <th scope="col">Contact's phone</th>
+        <th scope="col">Contact</th>
+        <th scope="col">Phone</th>
         <th></th>
       </tr>
     </thead>
@@ -26,7 +26,8 @@
         <td><%= link_to "Show", machine_path(machine),
           class: "btn-sm btn-info  mt-2  p-1" %></td>
       </tr>
-    <% end %>
+      <% end %>
     </tbody>
   </table>
+
   <%= paginate @machines %>
