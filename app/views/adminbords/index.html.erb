@@ -7,59 +7,59 @@ Form Admin Dashbord
  -->
 
 
-<h1 class="card-header">Admin dashbord</h1>
+<h1 class="card-header shadow">Admin dashbord</h1>
 <div class="p-3">
 <!-- Buffer Block -->
 </div>
-<div class="d-flex flex-row justify-content-between">
+<div class="d-flex flex-row justify-content-around">
   <!-- Customer -->
-  <div class="card pb-0" style="width: 18rem" style="height: 18rem">
-    <div class="card-header">
+  <div class="card shadow" style="width: 18rem">
+    <div class="card-header bg-white">
       <h5>Customers</h5>
     </div>
     <ul class="list-unstyled">
-      <li><%= link_to "Index", customers_path, class: 'btn btn-info w-100' %></li>
-      <li><%= link_to "New", new_customer_path, class: 'btn btn-secondary w-100' %></li>
+      <li><%= link_to "Index", customers_path, class: 'btn btn-light w-100 mt-2 shadow-sm p-2' %></li>
+      <li><%= link_to "New", new_customer_path, class: 'btn btn-light w-100 mt-2 shadow-sm p-2' %></li>
     </ul>
   </div>
   <!-- Locations -->
-  <div class="card pb-0" style="width: 18rem">
-    <div class="card-header">
+  <div class="card shadow" style="width: 18rem">
+    <div class="card-header bg-white">
       <h5>Locations</h5>
     </div>
     <ul class="list-unstyled">
-      <li><%= link_to "Index", locations_path, class: 'btn btn-info w-100' %></li>
-      <li><%= link_to "New", select_customer_new_location_path, class: 'btn btn-secondary w-100' %></li>
+      <li><%= link_to "Index", locations_path, class: 'btn btn-light w-100 mt-2 shadow-sm p-2' %></li>
+      <li><%= link_to "New", select_customer_new_location_path, class: 'btn btn-light w-100 mt-2 shadow-sm p-2' %></li>
     </ul>
   </div>
   <!-- Machines -->
-  <div class="card pb-0" style="width: 18rem">
-    <div class="card-header">
+  <div class="card shadow" style="width: 18rem">
+    <div class="card-header bg-white">
       <h5>Machines</h5>
     </div>
-    <ul class="list-unstyled ">
-      <li><%= link_to "Index", machines_path, class: 'btn btn-info w-100' %></li>
-      <li><%= link_to "New", select_customer_new_machine_path, class: 'btn btn-secondary w-100' %></li>
+    <ul class="list-unstyled">
+      <li><%= link_to "Index", machines_path, class: 'btn btn-light w-100 mt-2 shadow-sm p-2' %></li>
+      <li><%= link_to "New", select_customer_new_machine_path, class: 'btn btn-light w-100 mt-2 shadow-sm p-2' %></li>
     </ul>
   </div>
   <!-- Customer's accounts -->
-  <div class="card pb-0" style="width: 18rem">
-    <div class="card-header">
+  <div class="card shadow" style="width: 18rem">
+    <div class="card-header bg-white">
       <h5>Accounts</h5>
     </div>
     <ul class="list-unstyled">
-      <li><%= link_to "Index", adminbord_accounts_path(1), class: 'btn btn-info w-100' %></li>
-      <li><%= link_to "New",select_customer_new_account_path, class: 'btn btn-secondary w-100' %></li>
+      <li><%= link_to "Index", adminbord_accounts_path(1), class: 'btn btn-light w-100 mt-2 shadow-sm p-2' %></li>
+      <li><%= link_to "New",select_customer_new_account_path, class: 'btn btn-light w-100 mt-2 shadow-sm p-2'  %></li>
     </ul>
   </div>
   <!-- Services call -->
-  <div class="card pb-0" style="width: 18rem">
-    <div class="card-header">
+  <div class="card shadow" style="width: 18rem">
+    <div class="card-header bg-white">
       <h5>Service calls</h5>
     </div>
     <ul class="list-unstyled">
-      <li><%= link_to "Index", service_calls_path, class: 'btn btn-info w-100' %></li>
-      <li><%= link_to "Delete", service_calls_path, class: 'btn btn-secondary w-100' %></li>
+      <li><%= link_to "Index", service_calls_path, class: 'btn btn-light w-100 mt-2 shadow-sm p-2' %></li>
+      <li><%= link_to "Delete", service_calls_path, class: 'btn btn-light w-100  mt-2 shadow-sm p-2' %></li>
     </ul>
   </div>
 

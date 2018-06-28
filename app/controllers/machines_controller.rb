@@ -31,7 +31,12 @@ class MachinesController < ApplicationController
     end
 
     def show
-
+      @service_calls = []
+      ServiceCall.all.each do |service|
+        if service.machine  == @machine
+          @service_calls << service
+        end
+      end
     end
 
     def update

@@ -6,8 +6,10 @@
 Form Customer Information
 list all the customer information contacts, location and machines
  -->
-
-<h3 class="card-header">Main contact</h3>
+ <div class="p-3">
+ <!-- Buffer Block -->
+ </div>
+<h3 class="card-header shadow-sm">Main Contact</h3>
 
 <!-- Customer form, show -->
 <%= form_for @customer do |f| %>
@@ -26,7 +28,7 @@ list all the customer information contacts, location and machines
     </div>
   </div>
   <!-- Costumer Name -->
-  <div class="d-flex flex-row"> <!-- cards wrapper -->
+  <div class="d-flex flex-row shadow"> <!-- cards wrapper -->
     <div class="card w-50">
       <h5 class="card-header"><%= @customer.bus_name %></h5>
       <!-- Costumer Info -->

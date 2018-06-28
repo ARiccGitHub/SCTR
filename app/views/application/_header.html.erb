@@ -19,7 +19,7 @@
         <% if account_signed_in?%>
           <%= link_to "Log out", destroy_account_session_path, class: 'nav-link text-dark', method: :delete%>
         <% else %>
-          <%= link_to "Dashbord", adminbords_path, class: 'nav-link text-dark' %>
+          <%= link_to "Dashboard", adminbords_path, class: 'nav-link text-dark' %>
           <%= link_to "Log out", destroy_admin_session_path, class: 'nav-link text-dark', method: :delete%>
         <% end %>
       <% else %>
