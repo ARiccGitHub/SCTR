@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 class Accounts::RegistrationsController < DeviseController
-  # Fix cross model visits,  concern module Accessible
-  #include Accessible
+
 
   prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
   prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy]
