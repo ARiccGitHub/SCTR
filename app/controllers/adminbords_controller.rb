@@ -3,7 +3,8 @@ class AdminbordsController < ApplicationController
   ###----- Before actions          Append a callback before actions
   ### condition.before_action if condition is true
   ###  set what actions can be call before using all or some CRUD functions
-  before_action :authenticate_admin!, only: [:index]
+  before_action :authenticate_admin!, only: [:index, :select_customer_new_location, :select_customer_new_machine,
+      :select_customer_new_account, :show_account_register]
   before_action :set_customer, only: [:select_customer_new_location, :select_customer_new_machine,
     :select_customer_new_account]
   before_action :set_account, only: [:select_account_locations, :show_account_register]

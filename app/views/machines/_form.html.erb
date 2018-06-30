@@ -44,7 +44,7 @@
     <!-- machines Name -->
     <div class="card w-50" >
       <div class="card-header d-flex flex-row justify-content-between">
-        <h5 >Machines number:&#160;<%= f.text_field :machine_number, class: "form-control-sm mt-1" %>*</h5>
+        <h5 >Machines number:&#160;<%= f.text_field :machine_number, class: "form-control-sm mt-1" %> *</h5>
         <div>
           <% if @machine.machine_number == nil  %>
             <%= link_to "Delete", machines_path(@machine), class: 'btn btn-outline-danger disabled', data: {confirm: "Are you sure?"}, method: :delete %>

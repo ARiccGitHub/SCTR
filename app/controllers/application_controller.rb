@@ -16,8 +16,5 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:update, keys: [:title, :first_name, :last_name,
       :customer_number, :main_contact, :email, :customer_id])
   end
-  # def create
-  #   UserMailer.with(service_call: @service_call, machine: @machine, account: current_account, ).request.deliver_now
-  #   redirect_to root_path, notice: "Your service ticket request was succelly commited!"
-  # end
+
 end
