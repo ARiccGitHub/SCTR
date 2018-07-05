@@ -44,7 +44,7 @@
     <!-- Location Name -->
     <div class="card w-50" >
       <div class="card-header formHeadBlockSizing d-flex flex-row justify-content-between">
-        <h5 >Location name: <%= f.text_field :name, class: "form-control-sm w-75 mt-1" %>* </h5>
+        <h5 >Location name: <%= f.text_field :name, class: "form-control-sm w-75 mt-1" %> * </h5>
         <div>
           <% if @location.name == nil  %>
             <%= link_to "Delete", root_path, class: 'btn btn-outline-danger disabled' %>
@@ -57,8 +57,8 @@
         <div class="d-flex flex-column">
           <!-- Phone -->
           <h4 class="card-title">Contact:</h4>
-          <p class="card-text">Tel:&#160;&#160;&#160;&#160;&#160;<%= f.phone_field :phone, class: "form-control-sm" %>*</p>
-          <p class="card-text">Email:&#160;<%= f.email_field :email, class: "form-control-sm" %>*</p>
+          <p class="card-text">Tel:&#160;&#160;&#160;&#160;&#160;<%= f.phone_field :phone, class: "form-control-sm" %> *</p>
+          <p class="card-text">Email:&#160;<%= f.email_field :email, class: "form-control-sm" %> *</p>
           <p></p>
           <!-- Address -->
           <h4 class="card-title">Address:</h4>
