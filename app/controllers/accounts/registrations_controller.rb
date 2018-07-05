@@ -2,9 +2,9 @@
 class Accounts::RegistrationsController < DeviseController
 
 
-  prepend_before_action :require_no_authentication, only: [:new, :create, :cancel]
+  prepend_before_action :require_no_authentication, only: [:new, :create, :cancel, :edit_account_register, :update_account_register]
   prepend_before_action :authenticate_scope!, only: [:edit, :update, :destroy]
-  prepend_before_action :set_minimum_password_length, only: [:new, :edit]
+  prepend_before_action :set_minimum_password_length, only: [:new, :edit, :edit_account_register]
 
 
   # GET /resource/sign_up
@@ -22,10 +22,8 @@ class Accounts::RegistrationsController < DeviseController
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
-        set_flash_message! :notice, :signed_up
         redirect_to show_account_register_path(@account)
       else
-        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         redirect_to show_account_register_path(@account)
       end
     else
@@ -35,11 +33,32 @@ class Accounts::RegistrationsController < DeviseController
     end
   end
 
+  # GET /resource/edit used by admin
+  def edit_account_register
+    @account = Account.find(params[:id])
+    render :edit_account_register
+  end
+  # GET /resource/edit used by admin
+  def update_account_register
+    self.resource = Account.find(params[:id])
+
+    yield resource if block_given?
+
+    account = Account.find(params[:id])
+
+    if account.update(account_update_params)
+
+      redirect_to show_account_register_path(@account)
+    else
+      flash.now[:alert] = "error"
+      render :edit_account_register
+    end
+  end
+
   # GET /resource/edit
   def edit
     render :edit
   end
-
   # PUT /resource
   # We need to use a copy of the resource because we don't want to change
   # the current user in place.
@@ -141,7 +160,7 @@ class Accounts::RegistrationsController < DeviseController
   end
 
   def account_update_params
-    devise_parameter_sanitizer.sanitize(:account_update,)
+    devise_parameter_sanitizer.sanitize(:account_update)
   end
 
   def translation_scope

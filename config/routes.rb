@@ -54,7 +54,7 @@ Rails.application.routes.draw do
        end
      end
   end
-  # achines
+  # Machines
    resources :machines do
      resources :service_calls do
      end
@@ -72,6 +72,16 @@ Rails.application.routes.draw do
    get 'select_customer_new_account', to: 'adminbords#select_customer_new_account'
    # Route to show account
    get 'adminbords/show_account_register/:account_id', to: 'adminbords#show_account_register', as: 'show_account_register'
+
+
+   devise_scope :account do
+     get 'accounts/registrations/edit_account_register/:id', to: 'accounts/registrations#edit_account_register', as: 'edit_account_register'
+     # Routes to
+     put 'accounts/registrations/update_account_register/:id', to: 'accounts/registrations#update_account_register', as: 'update_account_register'
+     # Routes to
+   end
+
    # Post accounts locations
    post 'adminbords/save_account/:account_id/locations/:selected_locations_ids', to: 'adminbords#save_account_locations', as: 'save_account_locations'
+
 end

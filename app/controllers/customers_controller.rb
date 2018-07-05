@@ -50,6 +50,7 @@ class CustomersController < ApplicationController
       redirect_to customer_path(@customer)
     else
       flash.now[:notice] = "error"
+        
       render 'edit'
     end
   end

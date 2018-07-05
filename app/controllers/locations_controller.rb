@@ -32,7 +32,7 @@ class LocationsController < ApplicationController
       unless @location.customer_number == nil
          redirect_to customer_location_path(@location.customer, @location)
       else
-         lash.now[:notice] = "error"
+         flash.now[:notice] = "error"
          render 'new'
       end
     end

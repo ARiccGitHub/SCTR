@@ -7,7 +7,7 @@ class AdminbordsController < ApplicationController
       :select_customer_new_account, :show_account_register]
   before_action :set_customer, only: [:select_customer_new_location, :select_customer_new_machine,
     :select_customer_new_account]
-  before_action :set_account, only: [:select_account_locations, :show_account_register]
+  before_action :set_account, only: [:select_account_locations, :show_account_register, :edit_account_register]
 
   def index
   end
@@ -29,7 +29,6 @@ class AdminbordsController < ApplicationController
   end
 
   def select_account_locations
-    @account = Account.find(params[:account_id])
     customer = Customer.find_by customer_number: @account.customer_number
     locations = customer.locations
     @locations = locations.order(:customer_number).page params[:page]
