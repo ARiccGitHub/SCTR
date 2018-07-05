@@ -27,7 +27,7 @@
 <div class="card w-50 shadow">
   <div class="card-body d-flex flex-row justify-content-between">
     <div><h4 class="pt-3 pr-3"><%= f.label :customer_number, "Customer number" %>:</h4> <%= f.text_field :customer_number,
-        class: 'form-control-sm w-75'%>*
+        class: 'form-control-sm w-75'%> *
     </div>
     <!-- Delete, Admin permission lvl-0 only access-->
     <div>
@@ -44,13 +44,13 @@
 <div class="d-flex flex-row shadow"><!-- cards wrapper -->
   <!-- Costumer Name -->
   <div class="card w-50" >
-    <h5 class="card-header ">Business name: <%= f.text_field :bus_name, class: "form-control-sm w-50" %>*</h5>
+    <h5 class="card-header ">Business name: <%= f.text_field :bus_name, class: "form-control-sm w-50" %> *</h5>
     <!-- Costumer Info -->
     <div class="card-body">
       <div class="d-flex flex-column">
         <!-- Phone and Email -->
         <h4 class="card-title">Contact:</h4>
-        <p class="card-text">Tel:&#160;&#160;&#160;&#160;&#160;<%= f.phone_field :phone, class: "form-control-sm" %>*</p>
+        <p class="card-text">Tel:&#160;&#160;&#160;&#160;&#160;<%= f.phone_field :phone, class: "form-control-sm" %> *</p>
         <p class="card-text">Email: <%= f.email_field :email, class: "form-control-sm" %></p>
         <p></p>
         <!-- Address -->

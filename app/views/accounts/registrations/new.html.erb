@@ -3,7 +3,6 @@ Admins with permissions lvl-2 or lower are allower to access this page, customer
 -->
 <!--
 Customer account registration
-list all the machine information contacts and location
 -->
 <div class="p-2">
 <!-- Buffer Block -->
@@ -12,17 +11,16 @@ list all the machine information contacts and location
 <div class="p-3">
 <!-- Buffer Block -->
 </div>
-
+<%# Customer account registration form %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= devise_error_messages! %>
-
   <div class="card w-50 shadow" >
-      <h5 class="card-header">Customer number:&#160;<%= f.text_field :customer_number, class: "form-control-sm" %>*</h5>
+      <h5 class="card-header">Customer number:&#160;<%= f.text_field :customer_number, class: "form-control-sm" %> *</h5>
     <div class="card-body">
       <div class="d-flex flex-column">
         <!-- Name and Email -->
         <h4 class="card-title">Name:</h4>
-        <p class="card-text">Title:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<%= f.text_field :title, class: "form-control-sm w-25" %>*</p>
+        <p class="card-text">Title:&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<%= f.text_field :title, class: "form-control-sm w-25" %> *</p>
         <p class="card-text">First name:&#160;<%= f.text_field :first_name, class: "form-control-sm" %> *</p>
         <p class="card-text">Last name:&#160;<%= f.text_field :last_name, class: "form-control-sm" %> *</p>
         <p class="card-title">Email:</p>
@@ -36,7 +34,7 @@ list all the machine information contacts and location
         <p class="card-text "><%= f.password_field :password, autocomplete: "off", class: "form-control-sm w-50" %></p>
         <p class="card-text "><%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control-sm w-50" %></p>
       </div>
-      <%= f.submit "Submit", class: "btn btn-info" %>
     </div><!-- card-body -->
+      <%= f.submit "Submit", class: "btn btn-info" %>
   </div><!-- card -->
 <% end %>

@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+SCTR
+Service Call Ticket Requests is a simple CRM web application generating customers service call ticket requests by utilizing a client login system.
 
-Things you may want to cover:
+Developed with Ruby on Rails 5 platform 
 
-* Ruby version
+The app development still in its infancy
 
-* System dependencies
+Errors messages and management still need to be fully implement.
 
-* Configuration
+More login validations need to be added
 
-* Database creation
+gems in issue
 
-* Database initialization
+gems
 
-* How to run the test suite
+	Devise: for login and authentication
+		Two model Account and Admin
 
-* Services (job queues, cache servers, search engines, etc.)
+	Kaminari: paginator for Ruby webapps
 
-* Deployment instructions
+	bootstrap, '~> 4.1.1': for style web
 
-* ...
+  coming:
+  	paranoia:  for overriding ActiveRecord's delete and destroy
+  	Filterrific: for filter, search, and sort ActiveRecord lists.
